@@ -1,0 +1,24 @@
+D:\IT\Addin\RevitAddin1\HandleDatabse\bin\Debug\HandleDatabse.exe.config
+D:\IT\Addin\RevitAddin1\HandleDatabse\bin\Debug\HandleDatabse.exe
+D:\IT\Addin\RevitAddin1\HandleDatabse\bin\Debug\HandleDatabse.pdb
+D:\IT\Addin\RevitAddin1\HandleDatabse\bin\Debug\EntityFramework.dll
+D:\IT\Addin\RevitAddin1\HandleDatabse\bin\Debug\EntityFramework.SqlServer.dll
+D:\IT\Addin\RevitAddin1\HandleDatabse\bin\Debug\EntityFramework.xml
+D:\IT\Addin\RevitAddin1\HandleDatabse\bin\Debug\EntityFramework.SqlServer.xml
+D:\IT\Addin\RevitAddin1\HandleDatabse\obj\Debug\HandleDatabse.csprojAssemblyReference.cache
+D:\IT\Addin\RevitAddin1\HandleDatabse\obj\Debug\HandleDatabse.csproj.CoreCompileInputs.cache
+D:\IT\Addin\RevitAddin1\HandleDatabse\obj\Debug\HandleDatabse.csproj.CopyComplete
+D:\IT\Addin\RevitAddin1\HandleDatabse\obj\Debug\HandleDatabse.exe
+D:\IT\Addin\RevitAddin1\HandleDatabse\obj\Debug\HandleDatabse.pdb
+E:\Lap trinh\Revit\ColumnAutoRebaring_AI\RevitAddin1\HandleDatabse\bin\Debug\HandleDatabse.exe.config
+E:\Lap trinh\Revit\ColumnAutoRebaring_AI\RevitAddin1\HandleDatabse\bin\Debug\HandleDatabse.exe
+E:\Lap trinh\Revit\ColumnAutoRebaring_AI\RevitAddin1\HandleDatabse\bin\Debug\HandleDatabse.pdb
+E:\Lap trinh\Revit\ColumnAutoRebaring_AI\RevitAddin1\HandleDatabse\bin\Debug\EntityFramework.dll
+E:\Lap trinh\Revit\ColumnAutoRebaring_AI\RevitAddin1\HandleDatabse\bin\Debug\EntityFramework.SqlServer.dll
+E:\Lap trinh\Revit\ColumnAutoRebaring_AI\RevitAddin1\HandleDatabse\bin\Debug\EntityFramework.xml
+E:\Lap trinh\Revit\ColumnAutoRebaring_AI\RevitAddin1\HandleDatabse\bin\Debug\EntityFramework.SqlServer.xml
+E:\Lap trinh\Revit\ColumnAutoRebaring_AI\RevitAddin1\HandleDatabse\obj\Debug\HandleDatabse.csprojAssemblyReference.cache
+E:\Lap trinh\Revit\ColumnAutoRebaring_AI\RevitAddin1\HandleDatabse\obj\Debug\HandleDatabse.csproj.CoreCompileInputs.cache
+E:\Lap trinh\Revit\ColumnAutoRebaring_AI\RevitAddin1\HandleDatabse\obj\Debug\HandleDatabse.csproj.CopyComplete
+E:\Lap trinh\Revit\ColumnAutoRebaring_AI\RevitAddin1\HandleDatabse\obj\Debug\HandleDatabse.exe
+E:\Lap trinh\Revit\ColumnAutoRebaring_AI\RevitAddin1\HandleDatabse\obj\Debug\HandleDatabse.pdb
