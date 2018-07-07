@@ -40,6 +40,13 @@ namespace HandleDatabse.Database.Dao
             if (obj.Count() == 0) throw new InvalidDataException();
             return obj.First().ID;
         }
+        public static int InsertAndGetId(int min, int max, int implantMax, ColumnStandardRebar_AI_DbContext db = null)
+        {
+            if (db == null) db = new ColumnStandardRebar_AI_DbContext();
+
+            Insert(min, max, implantMax, db);
+            return GetId(min, max, implantMax, db);
+        }
         public static LengthInformation GetLengthInformation(int id, ColumnStandardRebar_AI_DbContext db = null)
         {
             if (db == null) db = new ColumnStandardRebar_AI_DbContext();

@@ -10,8 +10,10 @@ namespace HandleDatabse.ProjectData.EF
     {
         public int ID { get; set; }
         public int Bottom { get; set; }
+        public int BottomTrue { get; set; }
         public int Top { get; set; }
         public int Diameter { get; set; }
+        public string DiameterName { get { return $"T{Diameter}"; } }
         public int DevelopmentLength
         {
             get
@@ -30,23 +32,33 @@ namespace HandleDatabse.ProjectData.EF
         public bool IsCheckOK(int loc1, int loc2, out bool isFinish)
         {
             isFinish = false;
+            int max = Singleton.Instance.GeneralInfomation.LengthInformation.Max;
+            int topLim = -1;
+
             if ((loc1 < Bottom + DevelopmentLength) || (loc1 > Top)) return false;
             if ((loc2 < Bottom + DevelopmentLength) || (loc2 > Top)) return false;
             if (Math.Abs(loc1 - loc2) < DevelopmentBetweenLength) return false;
 
-            if (Singleton.Instance.ShortenOrder.Contains(ID-1))
+            if (Singleton.Instance.ShortenOrder.Contains(ID+1))
             {
-                if (loc1 - Bottom + ImplantLength > Singleton.Instance.GeneralInfomation.LengthInformation.ImplantMax) return false;
-                if (loc2 - Bottom + ImplantLength > Singleton.Instance.GeneralInfomation.LengthInformation.ImplantMax) return false;
-                if (loc1 - Bottom + ImplantLength < Singleton.Instance.GeneralInfomation.LengthInformation.Min) return false;
-                if (loc2 - Bottom + ImplantLength < Singleton.Instance.GeneralInfomation.LengthInformation.Min) return false;
+                if (loc1 - BottomTrue + ImplantLength > Singleton.Instance.GeneralInfomation.LengthInformation.ImplantMax) return false;
+                if (loc2 - BottomTrue + ImplantLength > Singleton.Instance.GeneralInfomation.LengthInformation.ImplantMax) return false;
+                if (loc1 - BottomTrue + ImplantLength < Singleton.Instance.GeneralInfomation.LengthInformation.Min) return false;
+                if (loc2 - BottomTrue + ImplantLength < Singleton.Instance.GeneralInfomation.LengthInformation.Min) return false;
+
+                if (ID < Singleton.Instance.LoopCount - 1)
+                {
+                    DesignInformation nextDesInfo = Singleton.Instance.DesignInformations[ID + 1];
+                    topLim = nextDesInfo.BottomTrue;
+                    if (topLim - (loc1 - DevelopmentLength) > max) return false;
+                    if (topLim - (loc2 - DevelopmentLength) > max) return false;
+                }
             }
 
             if (ID < Singleton.Instance.LoopCount - 1) return true;
 
             isFinish = true;
-            int max = Singleton.Instance.GeneralInfomation.LengthInformation.Max;
-            int topLim = Singleton.Instance.GeneralInfomation.TopLimit;
+            topLim = Singleton.Instance.GeneralInfomation.TopLimit;
             if (topLim - (loc1 - DevelopmentLength) > max) return false;
             if (topLim - (loc2 - DevelopmentLength) > max) return false;
             return true;

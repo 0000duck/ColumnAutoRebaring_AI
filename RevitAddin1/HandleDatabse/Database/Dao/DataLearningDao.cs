@@ -12,13 +12,13 @@ namespace HandleDatabse.Database.Dao
 {
     public static class DataLearningDao
     {
-        public static void Insert(int idDataCombine, LengthInfoCollection lenInfoColl, ColumnStandardRebar_AI_DbContext db = null)
+        public static void Insert(int idDataCombine, LengthInfoCollection lenInfoColl, bool allowOverLevel, ColumnStandardRebar_AI_DbContext db = null)
         {
             if (db == null) db = new ColumnStandardRebar_AI_DbContext();
 
             try
             {
-                GetId(idDataCombine, db);
+                GetId(idDataCombine, allowOverLevel, db);
             }
             catch
             {
@@ -26,18 +26,19 @@ namespace HandleDatabse.Database.Dao
                 {
                     IDDataCombine = idDataCombine,
                     CreateDate = DateTime.Now,
-                    LengthOrder = ConvertLengthInfoCollection2String(lenInfoColl),
-                    Residual = lenInfoColl.Residual
+                    LengthOrder = ConvertLengthOrder2String(lenInfoColl),
+                    AllowOverLevel = allowOverLevel,
+                    Residual = allowOverLevel ? lenInfoColl.Residual : lenInfoColl.Residual2
                 };
                 db.DataLearnings.Add(res);
                 db.SaveChanges();
             }
         }
-        public static int GetId(int idDataCombine, ColumnStandardRebar_AI_DbContext db = null)
+        public static int GetId(int idDataCombine, bool allowOverLevel, ColumnStandardRebar_AI_DbContext db = null)
         {
             if (db == null) db = new ColumnStandardRebar_AI_DbContext();
 
-            var obj = db.DataLearnings.Where(x => x.IDDataCombine == idDataCombine);
+            var obj = db.DataLearnings.Where(x => x.IDDataCombine == idDataCombine && x.AllowOverLevel == allowOverLevel);
             if (obj.Count() == 0) throw new InvalidDataException();
             return obj.First().ID;
         }
@@ -57,13 +58,13 @@ namespace HandleDatabse.Database.Dao
             var dataLearning = GetDataLearning(id, db);
             return new LengthInfoCollection(dataLearning.LengthOrder, true);
         }
-        public static LengthInfoCollection GetLengthInfoCollectionFromDataCombine(int idDataCombine, ColumnStandardRebar_AI_DbContext db = null)
+        public static LengthInfoCollection GetLengthInfoCollectionFromDataCombine(int idDataCombine, bool allowOverLevel, ColumnStandardRebar_AI_DbContext db = null)
         {
             if (db == null) db = new ColumnStandardRebar_AI_DbContext();
 
-            return GetLengthInfoCollection(GetId(idDataCombine, db), db);
+            return GetLengthInfoCollection(GetId(idDataCombine, allowOverLevel, db), db);
         }
-        public static string ConvertLengthInfoCollection2String(LengthInfoCollection lenInfoColl)
+        public static string ConvertLengthOrder2String(LengthInfoCollection lenInfoColl)
         {
             string lenOrder = "";
             for (int i = 0; i < Singleton.Instance.LoopCount-1; i++)

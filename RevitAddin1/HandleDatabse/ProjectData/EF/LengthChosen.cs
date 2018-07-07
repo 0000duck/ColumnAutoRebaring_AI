@@ -28,30 +28,29 @@ namespace HandleDatabse.ProjectData.EF
         }
         public bool IsValid { get { return CheckValid(); } }
         public bool IsFinish { get; set; } = false;
-        public int Residual { get; set; }
-        public LengthChosen(int i, int j)
+        public LengthChosen(int i, int j, LengthChosen befLenChosen)
         {
-            IDColumn = 0;
-            DesignInformation desInfo = Singleton.Instance.DesignInformations[0];
-            Start1 = Singleton.Instance.GeneralInfomation.StartOffset.Offset1 - desInfo.DevelopmentLength;
-            Start2 = Singleton.Instance.GeneralInfomation.StartOffset.Offset2 - desInfo.DevelopmentLength;
-
             L1 = Singleton.Instance.Lengths[i];
             L2 = Singleton.Instance.Lengths[j];
 
-            ID = $"{i},{j}";
-        }
-        public LengthChosen(LengthChosen befLenChosen, int i, int j)
-        {
-            IDColumn = befLenChosen.IDColumn + 1;
-            DesignInformation desInfo = Singleton.Instance.DesignInformations[IDColumn];
-            Start1 = befLenChosen.End1 - desInfo.DevelopmentLength;
-            Start2 = befLenChosen.End2 - desInfo.DevelopmentLength;
+            if (befLenChosen == null)
+            {
+                IDColumn = 0;
+                DesignInformation desInfo = Singleton.Instance.DesignInformations[0];
+                Start1 = Singleton.Instance.GeneralInfomation.StartOffset.Offset1 - desInfo.DevelopmentLength;
+                Start2 = Singleton.Instance.GeneralInfomation.StartOffset.Offset2 - desInfo.DevelopmentLength;
 
-            L1 = Singleton.Instance.Lengths[i];
-            L2 = Singleton.Instance.Lengths[j];
+                ID = $"{i},{j}";
+            }
+            else
+            {
+                IDColumn = befLenChosen.IDColumn + 1;
+                DesignInformation desInfo = Singleton.Instance.DesignInformations[IDColumn];
+                Start1 = befLenChosen.End1 - desInfo.DevelopmentLength;
+                Start2 = befLenChosen.End2 - desInfo.DevelopmentLength;
 
-            ID = $"{befLenChosen.ID}-{i},{j}";
+                ID = $"{befLenChosen.ID}-{i},{j}";
+            }
         }
         private bool CheckValid()
         {

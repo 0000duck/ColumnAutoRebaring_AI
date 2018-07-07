@@ -18,7 +18,7 @@ namespace HandleDatabse.Database.Dao
 
             try
             {
-                GetId(idRebarDes, idEleDes,idBeamEleDes, idEleOff, idDevLen, idLenInfo, idStartOff, idFullStandLenOrder);
+                GetId(idRebarDes, idEleDes, idBeamEleDes, idEleOff, idDevLen, idLenInfo, idStartOff, idFullStandLenOrder);
             }
             catch
             {
@@ -42,11 +42,18 @@ namespace HandleDatabse.Database.Dao
         {
             if (db == null) db = new ColumnStandardRebar_AI_DbContext();
 
-            var obj = db.DataCombines.Where(x => x.IDRebarDesign == idRebarDes && x.IDElevationDesign == idEleDes && x.IDElevationOffset==idEleOff && x.IDBeamElevationDesign== idBeamEleDes && 
+            var obj = db.DataCombines.Where(x => x.IDRebarDesign == idRebarDes && x.IDElevationDesign == idEleDes && x.IDElevationOffset == idEleOff && x.IDBeamElevationDesign == idBeamEleDes &&
                     x.IDStartOffset == idStartOff && x.IDDevelopmentLength == idDevLen && x.IDLengthInformation == idLenInfo && x.IDFullStandardLengthOrder == idFullStandLenOrder);
             if (obj.Count() == 0) throw new InvalidDataException(); ;
 
             return obj.First().ID;
+        }
+        public static int InsertAndGetId(int idRebarDes, int idEleDes, int idBeamEleDes, int idEleOff, int idDevLen, int idLenInfo, int idStartOff, int idFullStandLenOrder, ColumnStandardRebar_AI_DbContext db = null)
+        {
+            if (db == null) db = new ColumnStandardRebar_AI_DbContext();
+
+            Insert(idRebarDes, idEleDes, idBeamEleDes, idEleOff, idDevLen, idLenInfo, idStartOff, idFullStandLenOrder, db);
+            return GetId(idRebarDes, idEleDes, idBeamEleDes, idEleOff, idDevLen, idLenInfo, idStartOff, idFullStandLenOrder, db);
         }
         public static DataCombine GetDataCombine(int idRebarDes, int idEleDes, int idBeamEleDes, int idEleOff, int idDevLen, int idLenInfo, int idStartOff, int idFullStandLenOrder, ColumnStandardRebar_AI_DbContext db = null)
         {
@@ -56,6 +63,14 @@ namespace HandleDatabse.Database.Dao
                     x.IDStartOffset == idStartOff && x.IDDevelopmentLength == idDevLen && x.IDLengthInformation == idLenInfo && x.IDFullStandardLengthOrder == idFullStandLenOrder);
             if (obj.Count() == 0) throw new InvalidDataException(); ;
 
+            return obj.First();
+        }
+        public static DataCombine GetDataCombine(int id, ColumnStandardRebar_AI_DbContext db = null)
+        {
+            if (db == null) db = new ColumnStandardRebar_AI_DbContext();
+
+            var obj = db.DataCombines.Where(x => x.ID == id);
+            if (obj.Count() == 0) throw new InvalidIDException();
             return obj.First();
         }
     }

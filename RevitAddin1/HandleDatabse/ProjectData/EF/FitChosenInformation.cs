@@ -13,6 +13,8 @@ namespace HandleDatabse.ProjectData.EF
         private List<int> singleFits;
         private List<int> doubleFits;
         private List<int> trippleFits;
+        private List<int> singleImplants;
+        private List<int> doubleImplants;
         public List<int> SingleFits
         {
             get
@@ -35,6 +37,22 @@ namespace HandleDatabse.ProjectData.EF
             {
                 if (trippleFits == null) trippleFits = FullStandardLengthOrderDao.GetStandardLengths(Singleton.Instance.DataCombine.IDFullStandardLengthOrder, Database.Others.StandardLengthEnum.L3);
                 return trippleFits;
+            }
+        }
+        public List<int> SingleImplants
+        {
+            get
+            {
+                if (singleImplants == null) singleImplants = FullStandardLengthOrderDao.GetStandardLengths(Singleton.Instance.DataCombine.IDFullStandardLengthOrder, Database.Others.StandardLengthEnum.I);
+                return singleImplants;
+            }
+        }
+        public List<int> DoubleImplants
+        {
+            get
+            {
+                if (doubleImplants == null) doubleImplants = FullStandardLengthOrderDao.GetStandardLengths(Singleton.Instance.DataCombine.IDFullStandardLengthOrder, Database.Others.StandardLengthEnum.I2);
+                return doubleImplants;
             }
         }
     }

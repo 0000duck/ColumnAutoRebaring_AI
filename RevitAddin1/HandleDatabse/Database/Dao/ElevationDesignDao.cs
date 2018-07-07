@@ -15,6 +15,10 @@ namespace HandleDatabse.Database.Dao
         {
             if (db == null) db = new ColumnStandardRebar_AI_DbContext();
 
+            if (eleOrder.Count < 2) throw new InvalidInputException();
+            if (shortenOrder != null)
+                if (shortenOrder.Contains(1)) throw new NotContainValue1Exception();
+
             List<int> idEleOrder = eleOrder.Select(x => ElevationDao.GetId(x)).ToList();
 
             try
@@ -40,6 +44,8 @@ namespace HandleDatabse.Database.Dao
             if (db == null) db = new ColumnStandardRebar_AI_DbContext();
 
             if (eleOrder.Count < 2) throw new InvalidInputException();
+            if (shortenOrder != null)
+                if (shortenOrder.Contains(1)) throw new NotContainValue1Exception();
 
             List<int> idEleOrder = eleOrder.Select(x => ElevationDao.GetId(x)).ToList();
             string sEleOrder = ConstantValue.CombineOrder(idEleOrder);
@@ -50,6 +56,13 @@ namespace HandleDatabse.Database.Dao
             if (obj.Count() == 0) throw new InvalidDataException();
 
             return obj.First().ID;
+        }
+        public static int InsertAndGetId(List<int> eleOrder, List<int> shortenOrder, ColumnStandardRebar_AI_DbContext db = null)
+        {
+            if (db == null) db = new ColumnStandardRebar_AI_DbContext();
+
+            Insert(eleOrder, shortenOrder, db);
+            return GetId(eleOrder, shortenOrder, db);
         }
         public static ElevationDesign GetElevationDesign(int id, ColumnStandardRebar_AI_DbContext db= null)
         {

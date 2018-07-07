@@ -49,6 +49,12 @@ namespace HandleDatabse.Database.Dao
 
             return obj.First().ID;
         }
+        public static int InsertAndGetId(List<int> lens, StandardLengthEnum standLenType, ColumnStandardRebar_AI_DbContext db = null)
+        {
+            if (db == null) db = new ColumnStandardRebar_AI_DbContext();
+            Insert(lens, standLenType, db);
+            return GetId(lens, standLenType, db);
+        }
         public static bool Check(int id, StandardLengthEnum standLenType, ColumnStandardRebar_AI_DbContext db = null)
         {
             if (db == null) db = new ColumnStandardRebar_AI_DbContext();

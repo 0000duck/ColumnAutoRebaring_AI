@@ -13,6 +13,7 @@ namespace HandleDatabse.Constant
         public static string InvalidData = "Không tồn tại giá trị trong bảng.";
         public static string InvalidInput = "Tham biến truyền vào không hợp lệ.";
         public static string InvalidID = "ID không tồn tại.";
+        public static string NotContainValue1 = "Không thể thêm giá trị là 1 vào bảng.";
 
         public static int MaxLength = 11700;
 

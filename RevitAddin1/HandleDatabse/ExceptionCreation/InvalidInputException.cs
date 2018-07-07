@@ -31,4 +31,10 @@ namespace HandleDatabse.ExceptionCreation
         {
         }
     }
+    public class NotContainValue1Exception : Exception
+    {
+        public NotContainValue1Exception() : base(ConstantValue.NotContainValue1)
+        {
+        }
+    }
 }

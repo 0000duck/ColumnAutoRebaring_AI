@@ -11,8 +11,10 @@ namespace HandleDatabse.ProjectData.Dao
 {
     public static class LengthChosenDao
     {
-        public static void InsertLengthChosens(int i, LengthChosen befLenChosen = null)
+        public static void InsertLengthChosens(int i=0, LengthChosen befLenChosen = null)
         {
+            List<LengthInfoCollection> lenInfoColls = new List<LengthInfoCollection>();
+
             int numLens = Singleton.Instance.Lengths.Count;
             if (i == 0)
             {
@@ -20,13 +22,13 @@ namespace HandleDatabse.ProjectData.Dao
                 {
                     for (int i2 = 0; i2 < numLens; i2++)
                     {
-                        LengthChosen lenChosen = new LengthChosen(i1, i2);
+                        LengthChosen lenChosen = new LengthChosen(i1, i2, befLenChosen);
                         if (lenChosen.IsValid)
                         {
                             if (lenChosen.IsFinish)
-                                Singleton.Instance.LengthChosens.Add(lenChosen);
-                            //Console.WriteLine($"Tầng thứ {i}: Sử dụng: {lenChosen.L1} và {lenChosen.L2}");
-                            InsertLengthChosens(i + 1, lenChosen);
+                                Singleton.Instance.LengthInfoCollections.Add(new LengthInfoCollection(lenChosen.ID, false));
+                            else
+                                InsertLengthChosens(i + 1, lenChosen);
                         }
                     }
                 }
@@ -37,24 +39,16 @@ namespace HandleDatabse.ProjectData.Dao
                 {
                     for (int i2 = 0; i2 < numLens; i2++)
                     {
-                        LengthChosen lenChosen = new LengthChosen(befLenChosen, i1, i2);
+                        LengthChosen lenChosen = new LengthChosen(i1, i2, befLenChosen);
                         if (lenChosen.IsValid)
                         {
                             if (lenChosen.IsFinish)
-                                Singleton.Instance.LengthChosens.Add(lenChosen);
-                            //for (int j = 0; j < i; j++)
-                            //{
-                            //    Console.Write("\t");
-                            //}
-                            //Console.WriteLine($"Tầng thứ {i}: Sử dụng: {lenChosen.L1} và {lenChosen.L2}");
-                            InsertLengthChosens(i + 1, lenChosen);
+                                Singleton.Instance.LengthInfoCollections.Add(new LengthInfoCollection(lenChosen.ID, false));
+                            else
+                                InsertLengthChosens(i + 1, lenChosen);
                         }
                     }
                 }
-            }
-            else
-            {
-                return;
             }
         }
     }

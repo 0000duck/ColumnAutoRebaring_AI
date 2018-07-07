@@ -47,6 +47,13 @@ namespace HandleDatabse.Database.Dao
 
             return obj.First().ID;
         }
+        public static int InsertAndGetId(List<int> eleOrder, ColumnStandardRebar_AI_DbContext db = null)
+        {
+            if (db == null) db = new ColumnStandardRebar_AI_DbContext();
+
+            Insert(eleOrder, db);
+            return GetId(eleOrder, db);
+        }
         public static BeamElevationDesign GetElevationDesign(int id, ColumnStandardRebar_AI_DbContext db= null)
         {
             if (db == null) db = new ColumnStandardRebar_AI_DbContext();

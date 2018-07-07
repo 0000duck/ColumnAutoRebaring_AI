@@ -48,6 +48,13 @@ namespace HandleDatabse.Database.Dao
 
             return obj.First().ID;
         }
+        public static int InsertAndGetId(List<string> diaOrder, List<int> locOrder, ColumnStandardRebar_AI_DbContext db = null)
+        {
+            if (db == null) db = new ColumnStandardRebar_AI_DbContext();
+
+            Insert(diaOrder, locOrder, db);
+            return GetId(diaOrder, locOrder, db);
+        }
         public static RebarDesign GetRebarDesign(int id, ColumnStandardRebar_AI_DbContext db = null)
         {
             if (db == null) db = new ColumnStandardRebar_AI_DbContext();

@@ -37,6 +37,7 @@ namespace HandleDatabse.ProjectData.Dao
                 desInfos.Add(new DesignInformation()
                 {
                     ID = i,
+                    BottomTrue = sum,
                     Bottom = botValue,
                     Top = topValue,
                     Diameter = diasAndLocs.Item1[j]

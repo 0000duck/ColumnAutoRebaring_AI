@@ -43,10 +43,17 @@ namespace HandleDatabse.Database.Dao
             if (!StandardLengthOrderDao.Check(idOrderI2, StandardLengthEnum.I2)) throw new InvalidInputException();
 
             string sFullStandLenOrder = $"{idOrderL}-{idOrderL2}-{idOrderL3}-{idOrderI}-{idOrderI2}";
-            var obj = db.FullStandardLengthOrders.Where(x => x.FullStandardLengthOrder1== sFullStandLenOrder);
+            var obj = db.FullStandardLengthOrders.Where(x => x.FullStandardLengthOrder1 == sFullStandLenOrder);
             if (obj.Count() == 0) throw new InvalidDataException(); ;
 
             return obj.First().ID;
+        }
+        public static int InsertAndGetId(int idOrderL, int idOrderL2, int idOrderL3, int idOrderI, int idOrderI2, ColumnStandardRebar_AI_DbContext db = null)
+        {
+            if (db == null) db = new ColumnStandardRebar_AI_DbContext();
+
+            Insert(idOrderL, idOrderL2, idOrderL3, idOrderI, idOrderI2, db);
+            return GetId(idOrderL, idOrderL2, idOrderL3, idOrderI, idOrderI2, db);
         }
         public static FullStandardLengthOrder GetFullStandardLengthOrder(int id, ColumnStandardRebar_AI_DbContext db = null)
         {

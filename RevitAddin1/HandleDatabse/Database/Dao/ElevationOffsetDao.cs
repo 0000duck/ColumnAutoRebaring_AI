@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace HandleDatabse.Database.Dao
 {
-    public static  class ElevationOffsetDao
+    public static class ElevationOffsetDao
     {
         public static void Insert(int botOffValue, int botOffRatio, int topOffValue, int topOffRatio, ColumnStandardRebar_AI_DbContext db = null)
         {
-            if (db== null) db = new ColumnStandardRebar_AI_DbContext();
+            if (db == null) db = new ColumnStandardRebar_AI_DbContext();
 
             try
             {
@@ -44,6 +44,13 @@ namespace HandleDatabse.Database.Dao
 
             if (obj.Count() == 0) throw new InvalidDataException();
             return obj.First().ID;
+        }
+        public static int InsertAndGetId(int botOffValue, int botOffRatio, int topOffValue, int topOffRatio, ColumnStandardRebar_AI_DbContext db = null)
+        {
+            if (db == null) db = new ColumnStandardRebar_AI_DbContext();
+
+            Insert(botOffValue, botOffRatio, topOffValue, topOffRatio, db);
+            return GetId(botOffValue, botOffRatio, topOffValue, topOffRatio, db);
         }
         public static ElevationOffset GetElevationOffset(int id, ColumnStandardRebar_AI_DbContext db = null)
         {

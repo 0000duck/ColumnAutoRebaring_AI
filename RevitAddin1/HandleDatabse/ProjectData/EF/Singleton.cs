@@ -35,7 +35,7 @@ namespace HandleDatabse.ProjectData.EF
                 return designInformations;
             }
         }
-        public List<LengthInfoCollection> LengthInfoCollections { get; set; }
+        public List<LengthInfoCollection> LengthInfoCollections { get; set; } = new List<LengthInfoCollection>();
         public GeneralInfomation GeneralInfomation
         {
             get
@@ -68,14 +68,9 @@ namespace HandleDatabse.ProjectData.EF
                 return shortenOrder;
             }
         }
-        public List<LengthChosen> LengthChosens { get; set; } = new List<LengthChosen>();
-        public LengthInfoCollection OptimizeLengthInfoCollection
-        {
-            get
-            {
-                return LengthInfoCollections.OrderBy(x => x.Residual).First();
-            }
-        }
+        public LengthInfoCollection ResidualLengthInfoCollection { get; set; }
+        public LengthInfoCollection Residual2LengthInfoCollection { get; set; }
+        public LengthInfoCollection ChosenLengthInfoCollection { get; set; }
         public DataCombine DataCombine { get; set; }
     }
 }
