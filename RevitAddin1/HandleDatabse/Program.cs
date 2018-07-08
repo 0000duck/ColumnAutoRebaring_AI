@@ -40,21 +40,15 @@ namespace HandleDatabse
             #region Calculate and Insert DataLearning
             try
             {
-                DataLearningDao.GetId(idDataCombine, allowOverLevel);
+                DataLearningDao.GetId(idDataCombine);
             }
             catch (InvalidDataException)
             {
                 LengthChosenDao.InsertLengthChosens();
                 LengthInfoCollectionDao.GetLengthInfoCollection();
-                DataLearningDao.Insert(Singleton.Instance.DataCombine.ID, Singleton.Instance.ResidualLengthInfoCollection, true);
-                DataLearningDao.Insert(Singleton.Instance.DataCombine.ID, Singleton.Instance.Residual2LengthInfoCollection, false);
+                DataLearningDao.Insert(Singleton.Instance.DataCombine.ID, Singleton.Instance.AOLLengthInfoCollection, Singleton.Instance.NAOLLengthInfoCollection);
             }
             #endregion
-
-            var obj = Singleton.Instance.LengthInfoCollections.Where(x => x.Residual == Singleton.Instance.LengthInfoCollections.Min(y => y.Residual));
-            var obj1 = obj.OrderBy(x => x.Residual2).First();
-            var obj2 = Singleton.Instance.LengthInfoCollections.OrderBy(x => x.Residual2).First();
-
 
             #region Get DataLearning
             Singleton.Instance.ChosenLengthInfoCollection = DataLearningDao.GetLengthInfoCollectionFromDataCombine(idDataCombine, allowOverLevel);

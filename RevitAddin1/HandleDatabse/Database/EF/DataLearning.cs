@@ -16,11 +16,15 @@ namespace HandleDatabse.Database.EF
 
         [Required]
         [StringLength(500)]
-        public string LengthOrder { get; set; }
+        public string AOLLengthOrder { get; set; }
 
-        public bool AllowOverLevel { get; set; }
+        [Required]
+        [StringLength(500)]
+        public string NAOLLengthOrder { get; set; }
 
-        public int Residual { get; set; }
+        public int AOLResidual { get; set; }
+
+        public int NAOLResidual { get; set; }
 
         public virtual DataCombine DataCombine { get; set; }
     }

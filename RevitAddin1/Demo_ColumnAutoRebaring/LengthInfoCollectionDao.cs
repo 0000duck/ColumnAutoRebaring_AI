@@ -31,9 +31,9 @@ namespace Project
                     }
 
                     LengthInfo lenInfo = lenInfoColl.GetIndex(i, j);
-                    int start = lenInfo.Start;
-                    int end = lenInfo.End;
-                    CreateRebar(lenInfo.DiameterName, pnt, lenInfo.Start, lenInfo.End, $"{lenInfo.LengthType}", $"{lenInfo.LengthPosition}");
+                    string lenType = (LSingleton.Instance.ChosenAllowOverLevel ? lenInfo.LengthType : lenInfo.LengthType2).ToString();
+                    string lenPos = (LSingleton.Instance.ChosenAllowOverLevel ? lenInfo.LengthPosition : lenInfo.LengthPosition2).ToString();
+                    CreateRebar(lenInfo.DiameterName, pnt, lenInfo.Start, lenInfo.End, lenType, lenPos);
                 }
             }
             

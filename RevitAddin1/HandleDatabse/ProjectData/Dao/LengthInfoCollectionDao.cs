@@ -41,8 +41,8 @@ namespace HandleDatabse.ProjectData.Dao
                 }
             }
 
-            Singleton.Instance.ResidualLengthInfoCollection = Singleton.Instance.LengthInfoCollections[indexI];
-            Singleton.Instance.Residual2LengthInfoCollection = Singleton.Instance.LengthInfoCollections[indexJ];
+            Singleton.Instance.AOLLengthInfoCollection = Singleton.Instance.LengthInfoCollections[indexI];
+            Singleton.Instance.NAOLLengthInfoCollection = Singleton.Instance.LengthInfoCollections[indexJ];
         }
     }
 }

@@ -68,9 +68,10 @@ namespace HandleDatabse.ProjectData.EF
                 return shortenOrder;
             }
         }
-        public LengthInfoCollection ResidualLengthInfoCollection { get; set; }
-        public LengthInfoCollection Residual2LengthInfoCollection { get; set; }
+        public LengthInfoCollection AOLLengthInfoCollection { get; set; }
+        public LengthInfoCollection NAOLLengthInfoCollection { get; set; }
         public LengthInfoCollection ChosenLengthInfoCollection { get; set; }
+        public bool ChosenAllowOverLevel { get; set; } = true;
         public DataCombine DataCombine { get; set; }
     }
 }

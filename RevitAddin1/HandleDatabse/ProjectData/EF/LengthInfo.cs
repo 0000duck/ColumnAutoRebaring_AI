@@ -90,6 +90,7 @@ namespace HandleDatabse.ProjectData.EF
             if (i == Singleton.Instance.LoopCount - 2)
             {
                 SetResidual(lenInfo1, lenInfo2);
+                SetResidual2(lenInfo1, lenInfo2);
                 return;
             }
 
@@ -102,17 +103,26 @@ namespace HandleDatabse.ProjectData.EF
                 SetSingleImplant(lenInfo1); SetSingleImplant(lenInfo2);
                 SetDoubleImplant(lenInfo1, lenInfo2);
 
+                SetSingleImplant2(lenInfo1); SetSingleImplant2(lenInfo2);
+                SetDoubleImplant2(lenInfo1, lenInfo2);
+
                 // Column 1 Implanted
                 if (Singleton.Instance.ShortenOrder.Contains(i + 3))
                 {
                     SetSingleImplant(lenInfo3); SetSingleImplant(lenInfo4);
                     SetDoubleImplant(lenInfo3, lenInfo4);
+
+                    SetSingleImplant2(lenInfo3); SetSingleImplant2(lenInfo4);
+                    SetDoubleImplant2(lenInfo3, lenInfo4);
                 }
                 // Column 1 Not Implanted
                 else
                 {
                     SetSingleFit(lenInfo3); SetSingleFit(lenInfo4);
                     SetDoubleFit(lenInfo3, lenInfo4);
+
+                    SetSingleFit2(lenInfo3); SetSingleFit2(lenInfo4);
+                    SetDoubleFit2(lenInfo3, lenInfo4);
 
                     // Different Diameter
                     if (Singleton.Instance.DesignInformations[i].Diameter != Singleton.Instance.DesignInformations[i + 1].Diameter)
@@ -134,17 +144,26 @@ namespace HandleDatabse.ProjectData.EF
                 SetSingleFit(lenInfo1); SetSingleFit(lenInfo2);
                 SetDoubleFit(lenInfo1, lenInfo2);
 
+                SetSingleFit2(lenInfo1); SetSingleFit2(lenInfo2);
+                SetDoubleFit2(lenInfo1, lenInfo2);
+
                 // Column 1 Implanted
                 if (Singleton.Instance.ShortenOrder.Contains(i + 3))
                 {
                     SetSingleImplant(lenInfo3); SetSingleImplant(lenInfo4);
                     SetDoubleImplant(lenInfo3, lenInfo4);
+
+                    SetSingleImplant2(lenInfo3); SetSingleImplant2(lenInfo4);
+                    SetDoubleImplant2(lenInfo3, lenInfo4);
                 }
                 // Column 1 Not Implanted
                 else
                 {
                     SetSingleFit(lenInfo3); SetSingleFit(lenInfo4);
                     SetDoubleFit(lenInfo3, lenInfo4);
+
+                    SetSingleFit2(lenInfo3); SetSingleFit2(lenInfo4);
+                    SetDoubleFit2(lenInfo3, lenInfo4);
 
                     // Different Diameter
                     if (Singleton.Instance.DesignInformations[i].Diameter != Singleton.Instance.DesignInformations[i + 1].Diameter)
@@ -162,6 +181,7 @@ namespace HandleDatabse.ProjectData.EF
             }
 
             SetResidual(lenInfo1, lenInfo2);
+            SetResidual2(lenInfo1, lenInfo2);
             CheckResidual(i + 1);
         }
         private void SetSingleFit(LengthInfo lenInfo)

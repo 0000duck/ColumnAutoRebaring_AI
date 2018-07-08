@@ -34,29 +34,27 @@ namespace Demo_ColumnAutoRebaring
             int idOrderI2 = StandardLengthOrderDao.InsertAndGetId(new List<int> { 5850, 3900, 2925 }, StandardLengthEnum.I2);
             int idFullStandLenOrder = FullStandardLengthOrderDao.InsertAndGetId(idOrderL, idOrderL2, idOrderL3, idOrderI, idOrderI2);
             int idRebarDes = RebarDesignDao.InsertAndGetId(new List<string> { "T16" }, new List<int> { 1 });
-            int idEleDes = ElevationDesignDao.InsertAndGetId(new List<int> { 4970, 3300, 3300 }, new List<int> { 2 });
+            int idEleDes = ElevationDesignDao.InsertAndGetId(new List<int> { 4970, 3300, 3300 }, null);
             int idBeamEleDes = BeamElevationDesignDao.InsertAndGetId(new List<int> { 500, 500, 500 });
-            int idEleOff = ElevationOffsetDao.InsertAndGetId(0, 0, 0, 0);
+            int idEleOff = ElevationOffsetDao.InsertAndGetId(200, 0, 0, 0);
             int idDevLen = DevelopmentLengthDao.InsertAndGetId(45, 0, 40);
             int idLenInfo = LengthInformationDao.InsertAndGetId(1900, 7800, 3900);
             int idStartOff = StartOffsetDao.InsertAndGetId(2900, 1500);
-            int idDataCombine= DataCombineDao.InsertAndGetId(idRebarDes, idEleDes, idBeamEleDes, idEleOff, idDevLen, idLenInfo, idStartOff, idFullStandLenOrder);
-            Singleton.Instance.DataCombine = DataCombineDao.GetDataCombine(idDataCombine);
-            bool allowOverLevel = false;
+            int idDataCombine = DataCombineDao.InsertAndGetId(idRebarDes, idEleDes, idBeamEleDes, idEleOff, idDevLen, idLenInfo, idStartOff, idFullStandLenOrder);
+            bool allowOverLevel = true;
             Singleton.Instance.DataCombine = DataCombineDao.GetDataCombine(idDataCombine);
             #endregion
 
             #region Calculate and Insert DataLearning
             try
             {
-                DataLearningDao.GetId(idDataCombine, allowOverLevel);
+                DataLearningDao.GetId(idDataCombine);
             }
             catch (InvalidDataException)
             {
                 LengthChosenDao.InsertLengthChosens();
                 LengthInfoCollectionDao.GetLengthInfoCollection();
-                DataLearningDao.Insert(Singleton.Instance.DataCombine.ID, Singleton.Instance.ResidualLengthInfoCollection, true);
-                DataLearningDao.Insert(Singleton.Instance.DataCombine.ID, Singleton.Instance.Residual2LengthInfoCollection, false);
+                DataLearningDao.Insert(Singleton.Instance.DataCombine.ID, Singleton.Instance.AOLLengthInfoCollection, Singleton.Instance.NAOLLengthInfoCollection);
             }
             #endregion
 

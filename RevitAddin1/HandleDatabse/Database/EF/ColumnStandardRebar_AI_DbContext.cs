@@ -52,7 +52,11 @@ namespace HandleDatabse.Database.EF
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<DataLearning>()
-                .Property(e => e.LengthOrder)
+                .Property(e => e.AOLLengthOrder)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<DataLearning>()
+                .Property(e => e.NAOLLengthOrder)
                 .IsUnicode(false);
 
             modelBuilder.Entity<DevelopmentLength>()
