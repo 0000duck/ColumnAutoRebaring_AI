@@ -35,24 +35,10 @@ namespace RevitAddin1
 
         private static void DelClicked(object sender, RoutedEventArgs e)
         {
-            int count = SingleWPF.Instance.ViewInformations.Count;
             int index = SingleWPF.Instance.SelectedViewInformationIndex;
-            if (index == -1) return;
-            if (index == 0 || index == count - 1)
-            {
-                SingleWPF.Instance.ViewInformations.RemoveAt(index);
-                return;
-            }
 
-            SingleWPF.Instance.ViewInformations[index + 1] = new ViewInformation()
-            {
-                ID= SingleWPF.Instance.ViewInformations[index + 1].ID,
-                Name = SingleWPF.Instance.ViewInformations[index].Name,
-                FromDate = SingleWPF.Instance.ViewInformations[index - 1].ToDate + 1,
-                ToDate = SingleWPF.Instance.ViewInformations[index + 1].ToDate
-            };
-
-            SingleWPF.Instance.ViewInformations.RemoveAt(index);
+            SingleWPF.Instance.Timelines.RemoveAt(index);
+            ViewInfomationDao.GetViewInfomations();
         }
     }
 }

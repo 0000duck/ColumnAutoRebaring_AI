@@ -6,18 +6,16 @@ namespace RevitAddin1
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class ViewInformation
+    public partial class Timeline
     {
         public int ID { get; set; }
 
         public DateTime CreateDate { get; set; }
 
-        [Required]
-        [StringLength(50)]
-        public string Name { get; set; }
+        public int IDProject { get; set; }
 
-        public int FromDate { get; set; }
+        public int Date { get; set; }
 
-        public int ToDate { get; set; }
+        public virtual Project Project { get; set; }
     }
 }

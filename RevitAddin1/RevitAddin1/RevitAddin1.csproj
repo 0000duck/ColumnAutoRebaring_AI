@@ -65,15 +65,25 @@
   <ItemGroup>
     <Compile Include="Command\Command.cs" />
     <Compile Include="Constant\ConstantValue.cs" />
-    <Compile Include="Database\Dao\ViewInfomationDao.cs" />
+    <Compile Include="Database\Dao\TimelineDao.cs" />
+    <Compile Include="Database\EF\Project.cs" />
     <Compile Include="Database\EF\RenderDbContext.cs" />
     <Compile Include="Database\EF\sysdiagram.cs" />
-    <Compile Include="Database\EF\ViewInformation.cs" />
+    <Compile Include="Database\EF\Timeline.cs" />
+    <Compile Include="ProjectData\Dao\CategoryDao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProjectData\EF\Singleton.cs" />
-    <Compile Include="Utility\Utility.cs" />
-    <Compile Include="WPF\Dao\WPFViewInfomationDao.cs" />
+    <Compile Include="Utility\RevitUtility.cs" />
+    <Compile Include="WPF\Dao\ViewInfomationDao.cs" />
+    <Compile Include="WPF\EditTimelineForm.xaml.cs">
+      <DependentUpon>EditTimelineForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPF\EF\EditTimelineEnum.cs" />
     <Compile Include="WPF\EF\SingleWPF.cs" />
+    <Compile Include="WPF\EF\ViewInformation.cs" />
+    <Compile Include="WPF\Property\Button\AddClicked.cs" />
+    <Compile Include="WPF\Property\Button\EditTimelineOKClicked.cs" />
+    <Compile Include="WPF\Property\Button\EditClicked.cs" />
     <Compile Include="WPF\Property\Button\DelClicked.cs" />
     <Compile Include="WPF\Property\Button\OkClicked.cs" />
     <Compile Include="WPF\Property\Window\WindowLoaded.cs" />
@@ -85,10 +95,12 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="ProjectData\Dao\" />
-  </ItemGroup>
-  <ItemGroup>
+    <Page Include="WPF\EditTimelineForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="WPF\ViewInfoForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

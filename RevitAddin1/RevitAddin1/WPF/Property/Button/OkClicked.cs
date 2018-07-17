@@ -36,6 +36,7 @@ namespace RevitAddin1
         private static void OKClicked(object sender, RoutedEventArgs e)
         {
             Singleton.Instance.ViewInfoForm.Close();
+            Singleton.Instance.ViewInformations = SingleWPF.Instance.ViewInformations.ToList();
         }
     }
 }

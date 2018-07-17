@@ -14,6 +14,10 @@ namespace RevitAddin1
         #region Variable
         private static SingleWPF instance;
         private ObservableCollection<ViewInformation> viewInformations = new ObservableCollection<ViewInformation>();
+        private List<int> timelines;
+        private EditTimelineForm editTimelineForm;
+        private int selectedViewInformationIndex = -1;
+        private string editTimelineText;
         #endregion
 
         #region Property
@@ -36,7 +40,63 @@ namespace RevitAddin1
                 viewInformations = value; OnPropertyChanged();
             }
         }
-        public int SelectedViewInformationIndex { get; set; } = -1;
+        public List<int> Timelines
+        {
+            get
+            {
+                if (timelines == null) timelines = TimelineDao.GetTimelines();
+                return timelines;
+            }
+            set
+            {
+                timelines = value;
+            }
+        }
+        public EditTimelineForm EditTimelineForm
+        {
+            get
+            {
+                if (editTimelineForm == null) editTimelineForm = new EditTimelineForm();
+                return editTimelineForm;
+            }
+        }
+        public int SelectedViewInformationIndex
+        {
+            get
+            {
+                return selectedViewInformationIndex;
+            }
+            set
+            {
+                if (selectedViewInformationIndex != value) selectedViewInformationIndex = value;
+                OnPropertyChanged("SelectedTimeline");
+            }
+        }
+        public string EditTimelineText
+        {
+            get
+            {
+                return editTimelineText;
+            }
+            set
+            {
+                editTimelineText = value;
+                OnPropertyChanged();
+            }
+        }
+        public EditTimelineEnum EditTImelineEnum { get; set; }
+        public string SelectedTimeline
+        {
+            get
+            {
+                if (EditTImelineEnum == EditTimelineEnum.Edit)
+                {
+                    int i = SelectedViewInformationIndex < 0 ? 0 : SelectedViewInformationIndex;
+                    return $"{Timelines[i]}";
+                }
+                return "180101";
+            }
+        }
         #endregion
 
         #region PropertyChanged

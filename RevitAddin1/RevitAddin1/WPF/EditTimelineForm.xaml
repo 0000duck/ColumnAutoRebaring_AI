@@ -1,0 +1,17 @@
+﻿<Window x:Class="RevitAddin1.EditTimelineForm"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:RevitAddin1"
+             mc:Ignorable="d" SizeToContent="WidthAndHeight" 
+             DataContext="{x:Static local:SingleWPF.Instance}">
+    <StackPanel Margin="10" Orientation="Horizontal">
+        <Label Width="50" Content="{Binding SelectedTimeline}" VerticalAlignment="Center"/>
+        <TextBox Text="{Binding EditTimelineText}"
+                 TextBlock.TextAlignment="Right" VerticalAlignment="Center"
+                 Width="50" Margin="10 0 0 0"></TextBox>
+        <Button Content="OK" Width="35" Margin="10 0 0 0"
+                local:BaseAttachedProperty.EditTimelineOKClickedProperty="True"/>
+    </StackPanel>
+</Window>

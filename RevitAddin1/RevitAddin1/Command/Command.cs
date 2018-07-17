@@ -89,8 +89,7 @@ namespace RevitAddin1
             Transaction tx = new Transaction(Singleton.Instance.Document, "CovertToNumber");
             tx.Start();
 
-            View3D v3d = new FilteredElementCollector(Singleton.Instance.Document).OfClass(typeof(View3D)).Where(x => x.Name == "V1").Cast<View3D>().First();
-            Utility.Clone3DView(v3d);
+            RevitUtility.CloneView3D(2);
 
             tx.Commit();
             return Result.Succeeded;
@@ -109,6 +108,8 @@ namespace RevitAddin1
             tx.Start();
 
             Singleton.Instance.ViewInfoForm.ShowDialog();
+            //RevitUtility.CreateParameterFilterElements();
+            RevitUtility.CreateAndDeleteView3Ds();
 
             tx.Commit();
             return Result.Succeeded;
