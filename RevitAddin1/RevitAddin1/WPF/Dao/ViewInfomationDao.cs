@@ -15,7 +15,7 @@ namespace RevitAddin1
             {
                 SingleWPF.Instance.ViewInformations.Add(new ViewInformation()
                 {
-                    Name = $"V{i + 1}",
+                    Name = $"V{SingleWPF.Instance.Prefix}{i + 1}",
                     FromDate = SingleWPF.Instance.Timelines[i],
                     ToDate = SingleWPF.Instance.Timelines[i+1]- (i+1 == SingleWPF.Instance.Timelines.Count-1?0: 1)
                 });

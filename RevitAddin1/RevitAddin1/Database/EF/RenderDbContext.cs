@@ -31,6 +31,10 @@ namespace RevitAddin1
                 .WithRequired(e => e.Project)
                 .HasForeignKey(e => e.IDProject)
                 .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Timeline>()
+                .Property(e => e.Prefix)
+                .IsUnicode(false);
         }
     }
 }

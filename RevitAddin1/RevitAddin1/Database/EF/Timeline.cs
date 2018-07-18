@@ -14,6 +14,10 @@ namespace RevitAddin1
 
         public int IDProject { get; set; }
 
+        [Required]
+        [StringLength(10)]
+        public string Prefix { get; set; }
+
         public int Date { get; set; }
 
         public virtual Project Project { get; set; }

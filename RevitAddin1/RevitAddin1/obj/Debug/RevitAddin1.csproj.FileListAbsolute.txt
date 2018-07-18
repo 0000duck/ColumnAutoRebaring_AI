@@ -23,7 +23,6 @@ D:\1. Work\Code Project\1. Revit Addin\0. CurrentProject\RevitAddin1\RevitAddin1
 D:\1. Work\Code Project\1. Revit Addin\0. CurrentProject\RevitAddin1\RevitAddin1\bin\Debug\EntityFramework.SqlServer.dll
 D:\1. Work\Code Project\1. Revit Addin\0. CurrentProject\RevitAddin1\RevitAddin1\bin\Debug\EntityFramework.xml
 D:\1. Work\Code Project\1. Revit Addin\0. CurrentProject\RevitAddin1\RevitAddin1\bin\Debug\EntityFramework.SqlServer.xml
-D:\1. Work\Code Project\1. Revit Addin\0. CurrentProject\RevitAddin1\RevitAddin1\obj\Debug\RevitAddin1.csprojResolveAssemblyReference.cache
 D:\1. Work\Code Project\1. Revit Addin\0. CurrentProject\RevitAddin1\RevitAddin1\obj\Debug\WPF\ViewInfoForm.g.cs
 D:\1. Work\Code Project\1. Revit Addin\0. CurrentProject\RevitAddin1\RevitAddin1\obj\Debug\GeneratedInternalTypeHelper.g.cs
 D:\1. Work\Code Project\1. Revit Addin\0. CurrentProject\RevitAddin1\RevitAddin1\obj\Debug\RevitAddin1_MarkupCompile.cache
@@ -54,3 +53,8 @@ D:\1. Work\Code Project\1. Revit Addin\CurrentProject\RevitAddin1\RevitAddin1\ob
 D:\1. Work\Code Project\1. Revit Addin\CurrentProject\RevitAddin1\RevitAddin1\obj\Debug\RevitAddin1.pdb
 D:\1. Work\Code Project\1. Revit Addin\0. CurrentProject\RevitAddin1\RevitAddin1\obj\Debug\WPF\EditTimelineForm.g.cs
 D:\1. Work\Code Project\1. Revit Addin\0. CurrentProject\RevitAddin1\RevitAddin1\obj\Debug\WPF\EditTimelineForm.baml
+D:\1. Work\Code Project\1. Revit Addin\0. CurrentProject\RevitAddin1\RevitAddin1\obj\Debug\RevitAddin1.Properties.Resources.resources
+D:\1. Work\Code Project\1. Revit Addin\0. CurrentProject\RevitAddin1\RevitAddin1\obj\Debug\RevitAddin1.csproj.GenerateResource.cache
+D:\1. Work\Code Project\1. Revit Addin\0. CurrentProject\RevitAddin1\RevitAddin1\obj\Debug\RevitAddin1.csprojResolveAssemblyReference.cache
+D:\1. Work\Code Project\1. Revit Addin\0. CurrentProject\RevitAddin1\RevitAddin1\obj\Debug\WPF\ChoosePrefixForm.g.cs
+D:\1. Work\Code Project\1. Revit Addin\0. CurrentProject\RevitAddin1\RevitAddin1\obj\Debug\WPF\ChoosePrefixForm.baml

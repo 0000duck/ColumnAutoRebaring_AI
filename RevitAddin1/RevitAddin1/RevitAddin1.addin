@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<RevitAddIns>
+   <AddIn Type="Application">
+      <Assembly>RevitAddin1\RevitAddin1.dll</Assembly>
+      <ClientId>ddbf336a-29ce-4cd5-88c0-5a1d16bbd5cb</ClientId>
+      <FullClassName>RevitAddin1.App</FullClassName>
+      <Name>Auto Viewer</Name>
+      <VendorId>Huynh Thien Tai</VendorId>
+      <VendorDescription>Huynh Thien Tai, Hoa Binh Corporation</VendorDescription>	  
+   </AddIn>
+</RevitAddIns>

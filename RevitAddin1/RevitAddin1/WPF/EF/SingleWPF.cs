@@ -12,23 +12,17 @@ namespace RevitAddin1
     class SingleWPF: INotifyPropertyChanged
     {
         #region Variable
-        private static SingleWPF instance;
         private ObservableCollection<ViewInformation> viewInformations = new ObservableCollection<ViewInformation>();
         private List<int> timelines;
         private EditTimelineForm editTimelineForm;
         private int selectedViewInformationIndex = -1;
         private string editTimelineText;
+        private string prefix="";
+        private bool isSpecific = false;
         #endregion
 
         #region Property
-        public static SingleWPF Instance
-        {
-            get
-            {
-                if (instance == null) instance = new SingleWPF();
-                return instance;
-            }
-        }
+        public static SingleWPF Instance { get; set; }
         public ObservableCollection<ViewInformation> ViewInformations
         {
             get
@@ -44,7 +38,7 @@ namespace RevitAddin1
         {
             get
             {
-                if (timelines == null) timelines = TimelineDao.GetTimelines();
+                if (timelines == null) timelines = TimelineDao.GetTimelines(SingleWPF.Instance.prefix);
                 return timelines;
             }
             set
@@ -95,6 +89,31 @@ namespace RevitAddin1
                     return $"{Timelines[i]}";
                 }
                 return "180101";
+            }
+        }
+        public bool IsCloseFormOK { get; set; } = false;
+        public string Prefix
+        {
+            get
+            {
+                return prefix;
+            }
+            set
+            {
+                prefix = value;
+                OnPropertyChanged();
+            }
+        }
+        public bool IsSpecific
+        {
+            get
+            {
+                return isSpecific;
+            }
+            set
+            {
+                isSpecific = value;
+                OnPropertyChanged();
             }
         }
         #endregion

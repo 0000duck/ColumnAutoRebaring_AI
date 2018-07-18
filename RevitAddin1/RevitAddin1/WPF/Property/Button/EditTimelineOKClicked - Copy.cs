@@ -35,15 +35,24 @@ namespace RevitAddin1
 
         private static void EditTimelineOKClicked(object sender, RoutedEventArgs e)
         {
+            int d = -1;
+            if (!int.TryParse(SingleWPF.Instance.EditTimelineText, out d))
+            {
+                MessageBox.Show("Thông tin Timeline bị sai! Yêu cầu nhập lại.");
+                SingleWPF.Instance.EditTimelineText = "";
+                return;
+            }
+
             int index = SingleWPF.Instance.SelectedViewInformationIndex;
+            var timelines = SingleWPF.Instance.Timelines;
+            int newTimeline = int.Parse(SingleWPF.Instance.EditTimelineText);
             switch (SingleWPF.Instance.EditTImelineEnum)
             {
                 case EditTimelineEnum.Edit:
-                    SingleWPF.Instance.Timelines[SingleWPF.Instance.SelectedViewInformationIndex] =
-                        int.Parse(SingleWPF.Instance.EditTimelineText);
+                    timelines[index] = newTimeline;
                     break;
                 case EditTimelineEnum.Add:
-                    SingleWPF.Instance.Timelines.Add(int.Parse(SingleWPF.Instance.EditTimelineText));
+                    if (!timelines.Contains(newTimeline)) timelines.Add(newTimeline);
                     break;
             }
 
@@ -51,6 +60,11 @@ namespace RevitAddin1
             ViewInfomationDao.GetViewInfomations();
             SingleWPF.Instance.EditTimelineText = "";
             SingleWPF.Instance.EditTimelineForm.Hide();
+
+            if (Singleton.Instance.ViewInfoForm.Visibility == Visibility.Hidden)
+            {
+                Singleton.Instance.ViewInfoForm.ShowDialog();
+            }
         }
     }
 }

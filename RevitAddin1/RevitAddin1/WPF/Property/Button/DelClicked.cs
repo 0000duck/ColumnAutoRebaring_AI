@@ -36,6 +36,7 @@ namespace RevitAddin1
         private static void DelClicked(object sender, RoutedEventArgs e)
         {
             int index = SingleWPF.Instance.SelectedViewInformationIndex;
+            if (index == -1) index = 0;
 
             SingleWPF.Instance.Timelines.RemoveAt(index);
             ViewInfomationDao.GetViewInfomations();

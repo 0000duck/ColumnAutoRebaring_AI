@@ -5,13 +5,27 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:RevitAddin1"
              mc:Ignorable="d" SizeToContent="WidthAndHeight" 
-             DataContext="{x:Static local:SingleWPF.Instance}">
+             DataContext="{x:Static local:SingleWPF.Instance}"
+             local:BaseAttachedProperty.EditTimelineClosingProperty="True">
     <StackPanel Margin="10" Orientation="Horizontal">
-        <Label Width="50" Content="{Binding SelectedTimeline}" VerticalAlignment="Center"/>
-        <TextBox Text="{Binding EditTimelineText}"
+        <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Old Day:"/>
+                <Label Width="50" Content="{Binding SelectedTimeline}" VerticalAlignment="Center"/>
+                <Label Content="New Day:" Margin="10 0 0 0"/>
+                <TextBox Text="{Binding EditTimelineText}"
                  TextBlock.TextAlignment="Right" VerticalAlignment="Center"
-                 Width="50" Margin="10 0 0 0"></TextBox>
-        <Button Content="OK" Width="35" Margin="10 0 0 0"
+                 Width="50" Margin="5 0 0 0"></TextBox>
+            </StackPanel>
+            <StackPanel Margin="0 10 0 0" Orientation="Horizontal">
+                <Button Content="Pick CreateDate" Width="100"
+                        local:BaseAttachedProperty.PickCreateDateClickedProperty="True"></Button>
+                <Button Content="Pick RemoveDate" Margin="30 0 0 0" Width="100"
+                        local:BaseAttachedProperty.PickRemoveDateClickedProperty="True"></Button>
+            </StackPanel>
+        </StackPanel>
+        <Button Content="OK" Width="35" Height="35" Margin="15 0 10 0" 
+                HorizontalAlignment="Right" VerticalAlignment="Center"
                 local:BaseAttachedProperty.EditTimelineOKClickedProperty="True"/>
     </StackPanel>
 </Window>

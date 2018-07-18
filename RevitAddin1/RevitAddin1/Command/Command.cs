@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace RevitAddin1
 {
+    #region ConvertToNumber
     [Transaction(TransactionMode.Manual)]
     public class ConvertToNumber : IExternalCommand
     {
@@ -77,42 +78,77 @@ namespace RevitAddin1
             return Result.Succeeded;
         }
     }
+    #endregion
 
+    #region SetView
+    //[Transaction(TransactionMode.Manual)]
+    //public class SetView : IExternalCommand
+    //{
+    //    public Result Execute(ExternalCommandData commandData, ref string message, ElementSet easdfasf)
+    //    {
+    //        Singleton.Instance.UIDocument = commandData.Application.ActiveUIDocument;
+
+    //        Transaction tx = new Transaction(Singleton.Instance.Document, "CovertToNumber");
+    //        tx.Start();
+
+    //        View3D v3d = Singleton.Instance.ActiveView as View3D;
+    //        //XYZ eyePos = v3d.GetOrientation().EyePosition;
+    //        XYZ eyePos = new XYZ(516.711576714, 1501.694764777, 0);
+    //        ViewOrientation3D vOri3d = new ViewOrientation3D(new XYZ(eyePos.X, eyePos.Y, ConstantValue.milimet2feet* 40000), XYZ.BasisX, XYZ.BasisY);
+    //        v3d.SetOrientation(vOri3d);
+    //        v3d.LookupParameter("Target Elevation").Set(ConstantValue.milimet2feet * 8000);
+
+    //        tx.Commit();
+    //        return Result.Succeeded;
+    //    }
+    //}
+    #endregion
+
+    #region DeleteAllParameterFilterElements
     [Transaction(TransactionMode.Manual)]
-    public class Create3DViews : IExternalCommand
+    public class DeleteAllParameterFilterElements : IExternalCommand
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet easdfasf)
         {
-            Singleton.Instance.Document = commandData.Application.ActiveUIDocument.Document;
-            Selection sel = commandData.Application.ActiveUIDocument.Selection;
+            Singleton.Instance = new Singleton();
+            SingleWPF.Instance = new SingleWPF();
+
+            Singleton.Instance.UIDocument = commandData.Application.ActiveUIDocument;
 
             Transaction tx = new Transaction(Singleton.Instance.Document, "CovertToNumber");
             tx.Start();
 
-            RevitUtility.CloneView3D(2);
-
+            Singleton.Instance.Document.Delete(new FilteredElementCollector(Singleton.Instance.Document).OfClass(typeof(ParameterFilterElement)).Select(x => x.Id).ToList());
+            
             tx.Commit();
             return Result.Succeeded;
         }
     }
+    #endregion
 
+    #region Auto Viewer
     [Transaction(TransactionMode.Manual)]
     public class ShowForm : IExternalCommand
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet easdfasf)
         {
-            Singleton.Instance.Document = commandData.Application.ActiveUIDocument.Document;
-            Selection sel = commandData.Application.ActiveUIDocument.Selection;
+            Singleton.Instance = new Singleton();
+            SingleWPF.Instance = new SingleWPF();
+
+            Singleton.Instance.UIDocument = commandData.Application.ActiveUIDocument;
 
             Transaction tx = new Transaction(Singleton.Instance.Document, "CovertToNumber");
             tx.Start();
 
+            Singleton.Instance.ChoosePrefixForm.ShowDialog();
             Singleton.Instance.ViewInfoForm.ShowDialog();
-            //RevitUtility.CreateParameterFilterElements();
+            if (!SingleWPF.Instance.IsCloseFormOK) goto L1;
             RevitUtility.CreateAndDeleteView3Ds();
 
+            L1:
             tx.Commit();
             return Result.Succeeded;
         }
     }
+    #endregion
 }

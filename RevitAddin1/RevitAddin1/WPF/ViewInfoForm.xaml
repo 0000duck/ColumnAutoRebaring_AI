@@ -11,13 +11,17 @@
         <DataGrid ItemsSource="{Binding ViewInformations}" 
                   SelectedIndex="{Binding SelectedViewInformationIndex}"
                   AutoGenerateColumns="True" CanUserResizeColumns="True" IsReadOnly="True"/>
-        <Button Margin="15 0 0 0" Width="35" Content="Edit"
-                local:BaseAttachedProperty.EditClickedProperty="True"/>
-        <Button Margin="15 0 0 0" Width="35" Content="Add"
-                local:BaseAttachedProperty.AddClickedProperty="True"/>
-        <Button Margin="15 0 0 0" Width="35" Content="Del"
-                local:BaseAttachedProperty.DelClickedProperty="True"/>
-        <Button Margin="15 0 0 0" Width="35" Content="OK"
-                local:BaseAttachedProperty.OKClickedProperty="True"/>
+        <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Horizontal">
+                <Button Margin="15 0 0 0" Width="35" Height="20" Content="Edit"
+                        local:BaseAttachedProperty.EditClickedProperty="True"/>
+                <Button Margin="15 0 0 0" Width="35" Height="20" Content="Add"
+                        local:BaseAttachedProperty.AddClickedProperty="True"/>
+                <Button Margin="15 0 0 0" Width="35" Height="20" Content="Del"
+                        local:BaseAttachedProperty.DelClickedProperty="True"/>
+            </StackPanel>
+            <Button Margin="15 15 0 0" Width="135" Height="20" Content="OK"
+                        local:BaseAttachedProperty.OKClickedProperty="True"/>
+        </StackPanel>
     </StackPanel>
 </Window>
