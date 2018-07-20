@@ -11,13 +11,13 @@ namespace RevitAddin1
         public static void GetViewInfomations()
         {
             SingleWPF.Instance.ViewInformations.Clear();
-            for (int i = 0; i < SingleWPF.Instance.Timelines.Count-1; i++)
+            for (int i = 0; i < SingleWPF.Instance.Timelines.Count - 1; i++)
             {
                 SingleWPF.Instance.ViewInformations.Add(new ViewInformation()
                 {
-                    Name = $"V{SingleWPF.Instance.Prefix}{i + 1}",
+                    Name = $"V{SingleWPF.Instance.Prefix}_{i + 1}",
                     FromDate = SingleWPF.Instance.Timelines[i],
-                    ToDate = SingleWPF.Instance.Timelines[i+1]- (i+1 == SingleWPF.Instance.Timelines.Count-1?0: 1)
+                    ToDate = SingleWPF.Instance.Timelines[i + 1] - (i + 1 == SingleWPF.Instance.Timelines.Count - 1 ? 0 : 1)
                 });
             }
         }

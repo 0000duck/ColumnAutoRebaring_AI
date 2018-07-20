@@ -11,7 +11,9 @@ namespace RevitAddin1
     {
         public int Compare(View3D x, View3D y)
         {
-            string 
+            int i = int.Parse(x.Name.Split('_')[1]);
+            int j = int.Parse(y.Name.Split('_')[1]);
+            return i.CompareTo(j);
         }
     }
 }

@@ -92,6 +92,7 @@ namespace RevitAddin1
             }
         }
         public bool IsCloseFormOK { get; set; } = false;
+        public bool IsPrefixOK { get; set; } = false;
         public string Prefix
         {
             get

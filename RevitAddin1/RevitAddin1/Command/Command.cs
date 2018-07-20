@@ -151,4 +151,32 @@ namespace RevitAddin1
         }
     }
     #endregion
+
+    #region CopyDate
+    [Transaction(TransactionMode.Manual)]
+    public class CopyDate : IExternalCommand
+    {
+        public Result Execute(ExternalCommandData commandData, ref string message, ElementSet easdfasf)
+        {
+            Singleton.Instance = new Singleton();
+            SingleWPF.Instance = new SingleWPF();
+
+            Singleton.Instance.UIDocument = commandData.Application.ActiveUIDocument;
+
+            Transaction tx = new Transaction(Singleton.Instance.Document, "CovertToNumber");
+            tx.Start();
+
+            List<Element> elems = Singleton.Instance.Selection.PickObjects(ObjectType.Element).Select(x=>Singleton.Instance.Document.GetElement(x)).ToList();
+            Element hostElem = Singleton.Instance.Document.GetElement(Singleton.Instance.Selection.PickObject(ObjectType.Element));
+            foreach (Element e in elems)
+            {
+                e.LookupParameter("CreateDate").Set(hostElem.LookupParameter("CreateDate").AsInteger());
+                e.LookupParameter("RemoveDate").Set(hostElem.LookupParameter("RemoveDate").AsInteger());
+            }
+
+            tx.Commit();
+            return Result.Succeeded;
+        }
+    }
+    #endregion
 }

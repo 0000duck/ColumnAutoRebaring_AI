@@ -15,6 +15,9 @@ namespace RevitAddin1
 
             int viewInfoCount = Singleton.Instance.ViewInformations.Count;
             int view3dCount = Singleton.Instance.View3Ds.Count;
+
+            var view3ds = Singleton.Instance.View3Ds;
+
             for (int i = 0; i < viewInfoCount; i++)
             {
                 View3D view3d = CloneView3D(i + 1);
@@ -28,26 +31,27 @@ namespace RevitAddin1
                 ElementId paramFilerElemId = Singleton.Instance.ParameterFilterElements[i].Id;
                 view3d.AddFilter(paramFilerElemId);
                 view3d.SetFilterVisibility(paramFilerElemId, false);
+            }
 
-                for (int j = view3dCount - 1; j >= viewInfoCount; j--)
-                {
-                    //DeleteView3D(j + 1);
-                }
+            for (int j = view3dCount - 1; j >= viewInfoCount; j--)
+            {
+                DeleteView3D(j + 1);
             }
         }
         public static View3D CloneView3D(int index)
         {
             string prefix = SingleWPF.Instance.Prefix;
-            var view3ds = Singleton.Instance.View3Ds.Where(x => x.Name == $"V{prefix}{index}");
+            List<View3D> view3ds = Singleton.Instance.View3Ds.Where(x => x.Name == $"V{prefix}_{index}").ToList();
             if (view3ds.Count() != 0) return view3ds.First();
 
             View3D v3dClone = ElementTransformUtils.CopyElement(Singleton.Instance.Document, Singleton.Instance.View3Ds[0].Id, XYZ.BasisZ).Select(x => Singleton.Instance.Document.GetElement(x)).First() as View3D;
-            v3dClone.Name = $"V{prefix}{index}";
+            v3dClone.Name = $"V{prefix}_{index}";
             return v3dClone;
         }
         public static void DeleteView3D(int index)
         {
-            var view3ds = Singleton.Instance.View3Ds.Where(x => x.Name == $"V{index}");
+            string prefix = SingleWPF.Instance.Prefix;
+            var view3ds = Singleton.Instance.View3Ds.Where(x => x.Name == $"V{prefix}_{index}");
             if (view3ds.Count() == 0) return;
 
             Singleton.Instance.Document.Delete(view3ds.First().Id);
@@ -94,7 +98,9 @@ namespace RevitAddin1
             }
             else
             {
-                filter = new LogicalOrFilter(new List<ElementFilter> { invisibleFilter, createDateFilter, removeDateFilter });
+                FilterRule prefixNotContainRule = ParameterFilterRuleFactory.CreateNotContainsRule(worksetParam.Id, SingleWPF.Instance.Prefix, true);
+                ElementParameterFilter prefixNotContainFilter = new ElementParameterFilter(new List<FilterRule> { prefixNotContainRule });
+                filter = new LogicalOrFilter(new List<ElementFilter> { invisibleFilter, createDateFilter, removeDateFilter, prefixNotContainFilter });
             }
 
             ParameterFilterElement paramFilterElem =

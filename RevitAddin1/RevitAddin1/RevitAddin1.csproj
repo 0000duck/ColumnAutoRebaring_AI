@@ -94,13 +94,14 @@
     <Compile Include="WPF\EF\SingleWPF.cs" />
     <Compile Include="WPF\EF\ViewInformation.cs" />
     <Compile Include="WPF\Property\Button\AddClicked.cs" />
-    <Compile Include="WPF\Property\Button\EditTimelineOKClicked - Copy.cs" />
+    <Compile Include="WPF\Property\Button\EditTimelineOKClicked.cs" />
     <Compile Include="WPF\Property\Button\ChoosePrefixOKClicked.cs" />
     <Compile Include="WPF\Property\Button\EditClicked.cs" />
     <Compile Include="WPF\Property\Button\DelClicked.cs" />
     <Compile Include="WPF\Property\Button\PickRemoveDateClicked.cs" />
     <Compile Include="WPF\Property\Button\PickCreateDateClicked.cs" />
     <Compile Include="WPF\Property\Button\OkClicked.cs" />
+    <Compile Include="WPF\Property\Window\ChoosePrefixClosing.cs" />
     <Compile Include="WPF\Property\Window\EditTimelineClosing.cs" />
     <Compile Include="WPF\Property\Window\WindowClosing.cs" />
     <Compile Include="WPF\Property\Window\WindowLoaded.cs" />

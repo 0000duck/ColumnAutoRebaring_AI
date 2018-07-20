@@ -18,7 +18,7 @@ namespace RevitAddin1
             if (db == null) db = new RenderDbContext();
             var newTimelines = SingleWPF.Instance.Timelines;
 
-            db.Timelines.RemoveRange(db.Timelines);
+            db.Timelines.RemoveRange(db.Timelines.Where(x=> x.Prefix == SingleWPF.Instance.Prefix));
 
             for (int i = 0; i < newTimelines.Count; i++)
             {

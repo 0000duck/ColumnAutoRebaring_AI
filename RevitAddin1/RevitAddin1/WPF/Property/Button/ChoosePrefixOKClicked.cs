@@ -40,6 +40,7 @@ namespace RevitAddin1
                 MessageBox.Show("Bạn phải nhập thông tin đầu vào!");
                 return;
             }
+            SingleWPF.Instance.IsPrefixOK = true;
             Singleton.Instance.ChoosePrefixForm.Close();
         }
     }

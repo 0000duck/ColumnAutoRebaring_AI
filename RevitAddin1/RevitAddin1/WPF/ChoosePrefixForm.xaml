@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:RevitAddin1"
              mc:Ignorable="d" 
              DataContext="{x:Static local:SingleWPF.Instance}"
-             Title="Choose Prefix" SizeToContent="WidthAndHeight">
+             Title="Choose Prefix" SizeToContent="WidthAndHeight" local:BaseAttachedProperty.ChoosePrefixClosingProperty="True">
     <StackPanel Margin="10" Orientation="Vertical">
         <StackPanel Orientation="Horizontal">
             <Label Content="Prefix:"/>
