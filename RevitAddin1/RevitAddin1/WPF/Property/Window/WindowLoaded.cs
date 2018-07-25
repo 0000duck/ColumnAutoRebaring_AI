@@ -36,7 +36,7 @@ namespace RevitAddin1
 
         private static void WindowLoaded(object sender, RoutedEventArgs e)
         {
-            WPFViewInfomationDao.GetViewInfomations();
+            ViewInfomationDao.GetViewInfomations();
         }
     }
 }

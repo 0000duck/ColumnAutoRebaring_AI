@@ -35,7 +35,11 @@ namespace RevitAddin1
 
         private static void OKClicked(object sender, RoutedEventArgs e)
         {
+            SingleWPF.Instance.IsCloseFormOK = true;
             Singleton.Instance.ViewInfoForm.Close();
+
+            TimelineDao.Update();
+            Singleton.Instance.ViewInformations = SingleWPF.Instance.ViewInformations.ToList();
         }
     }
 }
