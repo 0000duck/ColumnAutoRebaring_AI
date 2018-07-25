@@ -1,0 +1,49 @@
+E:\Lap trinh\C# Basic\PythonTest\pyRevitTest\bin\Debug\pyRevitTest.dll
+E:\Lap trinh\C# Basic\PythonTest\pyRevitTest\bin\Debug\pyRevitTest.pdb
+E:\Lap trinh\C# Basic\PythonTest\pyRevitTest\bin\Debug\IronPython.dll
+E:\Lap trinh\C# Basic\PythonTest\pyRevitTest\bin\Debug\IronPython.Modules.dll
+E:\Lap trinh\C# Basic\PythonTest\pyRevitTest\bin\Debug\IronPython.SQLite.dll
+E:\Lap trinh\C# Basic\PythonTest\pyRevitTest\bin\Debug\IronPython.Wpf.dll
+E:\Lap trinh\C# Basic\PythonTest\pyRevitTest\bin\Debug\Microsoft.Dynamic.dll
+E:\Lap trinh\C# Basic\PythonTest\pyRevitTest\bin\Debug\Microsoft.Scripting.dll
+E:\Lap trinh\C# Basic\PythonTest\pyRevitTest\bin\Debug\Microsoft.Scripting.Metadata.dll
+E:\Lap trinh\C# Basic\PythonTest\pyRevitTest\bin\Debug\Microsoft.VisualStudio.CodeCoverage.Shim.dll
+E:\Lap trinh\C# Basic\PythonTest\pyRevitTest\bin\Debug\IronPython.xml
+E:\Lap trinh\C# Basic\PythonTest\pyRevitTest\bin\Debug\IronPython.Modules.xml
+E:\Lap trinh\C# Basic\PythonTest\pyRevitTest\bin\Debug\IronPython.SQLite.xml
+E:\Lap trinh\C# Basic\PythonTest\pyRevitTest\bin\Debug\IronPython.Wpf.xml
+E:\Lap trinh\C# Basic\PythonTest\pyRevitTest\bin\Debug\Microsoft.Dynamic.xml
+E:\Lap trinh\C# Basic\PythonTest\pyRevitTest\bin\Debug\Microsoft.Scripting.xml
+E:\Lap trinh\C# Basic\PythonTest\pyRevitTest\bin\Debug\Microsoft.Scripting.Metadata.xml
+E:\Lap trinh\C# Basic\PythonTest\pyRevitTest\obj\Debug\pyRevitTest.csprojAssemblyReference.cache
+E:\Lap trinh\C# Basic\PythonTest\pyRevitTest\obj\Debug\pyRevitTest.csproj.CoreCompileInputs.cache
+E:\Lap trinh\C# Basic\PythonTest\pyRevitTest\obj\Debug\pyRevitTest.csproj.CopyComplete
+E:\Lap trinh\C# Basic\PythonTest\pyRevitTest\obj\Debug\pyRevitTest.dll
+E:\Lap trinh\C# Basic\PythonTest\pyRevitTest\obj\Debug\pyRevitTest.pdb
+E:\Lap trinh\Revit\ColumnAutoRebaring_AI\PythonTest\pyRevitTest\bin\Debug\pyRevitTest.dll
+E:\Lap trinh\Revit\ColumnAutoRebaring_AI\PythonTest\pyRevitTest\bin\Debug\pyRevitTest.pdb
+E:\Lap trinh\Revit\ColumnAutoRebaring_AI\PythonTest\pyRevitTest\bin\Debug\IronPython.dll
+E:\Lap trinh\Revit\ColumnAutoRebaring_AI\PythonTest\pyRevitTest\bin\Debug\IronPython.Modules.dll
+E:\Lap trinh\Revit\ColumnAutoRebaring_AI\PythonTest\pyRevitTest\bin\Debug\IronPython.SQLite.dll
+E:\Lap trinh\Revit\ColumnAutoRebaring_AI\PythonTest\pyRevitTest\bin\Debug\IronPython.Wpf.dll
+E:\Lap trinh\Revit\ColumnAutoRebaring_AI\PythonTest\pyRevitTest\bin\Debug\Microsoft.Dynamic.dll
+E:\Lap trinh\Revit\ColumnAutoRebaring_AI\PythonTest\pyRevitTest\bin\Debug\Microsoft.Scripting.dll
+E:\Lap trinh\Revit\ColumnAutoRebaring_AI\PythonTest\pyRevitTest\bin\Debug\Microsoft.Scripting.Metadata.dll
+E:\Lap trinh\Revit\ColumnAutoRebaring_AI\PythonTest\pyRevitTest\bin\Debug\Microsoft.VisualStudio.CodeCoverage.Shim.dll
+E:\Lap trinh\Revit\ColumnAutoRebaring_AI\PythonTest\pyRevitTest\bin\Debug\IronPython.xml
+E:\Lap trinh\Revit\ColumnAutoRebaring_AI\PythonTest\pyRevitTest\bin\Debug\IronPython.Modules.xml
+E:\Lap trinh\Revit\ColumnAutoRebaring_AI\PythonTest\pyRevitTest\bin\Debug\IronPython.SQLite.xml
+E:\Lap trinh\Revit\ColumnAutoRebaring_AI\PythonTest\pyRevitTest\bin\Debug\IronPython.Wpf.xml
+E:\Lap trinh\Revit\ColumnAutoRebaring_AI\PythonTest\pyRevitTest\bin\Debug\Microsoft.Dynamic.xml
+E:\Lap trinh\Revit\ColumnAutoRebaring_AI\PythonTest\pyRevitTest\bin\Debug\Microsoft.Scripting.xml
+E:\Lap trinh\Revit\ColumnAutoRebaring_AI\PythonTest\pyRevitTest\bin\Debug\Microsoft.Scripting.Metadata.xml
+E:\Lap trinh\Revit\ColumnAutoRebaring_AI\PythonTest\pyRevitTest\obj\Debug\pyRevitTest.csprojAssemblyReference.cache
+E:\Lap trinh\Revit\ColumnAutoRebaring_AI\PythonTest\pyRevitTest\obj\Debug\pyRevitTest.csproj.CoreCompileInputs.cache
+E:\Lap trinh\Revit\ColumnAutoRebaring_AI\PythonTest\pyRevitTest\obj\Debug\pyRevitTest.csproj.CopyComplete
+E:\Lap trinh\Revit\ColumnAutoRebaring_AI\PythonTest\pyRevitTest\obj\Debug\pyRevitTest.dll
+E:\Lap trinh\Revit\ColumnAutoRebaring_AI\PythonTest\pyRevitTest\obj\Debug\pyRevitTest.pdb
+E:\Lap trinh\Revit\ColumnAutoRebaring_AI\PythonTest\pyRevitTest\obj\Debug\Form.g.cs
+E:\Lap trinh\Revit\ColumnAutoRebaring_AI\PythonTest\pyRevitTest\obj\Debug\pyRevitTest_MarkupCompile.cache
+E:\Lap trinh\Revit\ColumnAutoRebaring_AI\PythonTest\pyRevitTest\obj\Debug\pyRevitTest_MarkupCompile.lref
+E:\Lap trinh\Revit\ColumnAutoRebaring_AI\PythonTest\pyRevitTest\obj\Debug\Form.baml
+E:\Lap trinh\Revit\ColumnAutoRebaring_AI\PythonTest\pyRevitTest\obj\Debug\pyRevitTest.g.resources
