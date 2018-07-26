@@ -4,17 +4,29 @@
 library
 C#
 .cs
+<<<<<<< HEAD
+E:\Lap trinh\Revit\ColumnAutoRebaring_AI\RevitAddin1\RevitAddin1\obj\Debug\
+=======
 D:\1. Work\Code Project\1. Revit Addin\0. CurrentProject\RevitAddin1\RevitAddin1\obj\Debug\
+>>>>>>> 0a4714da3de64478033988709f9022ec089ed4c5
 RevitAddin1
 none
 false
 DEBUG;TRACE
 
+<<<<<<< HEAD
+1-1716313547
+
+19-2031034171
+20-887546975
+WPF\ViewInfoForm.xaml;
+=======
 3-2143012860
 1186268323
 34-618200566
 22-2050577605
 WPF\ChoosePrefixForm.xaml;WPF\EditTimelineForm.xaml;WPF\ViewInfoForm.xaml;
+>>>>>>> 0a4714da3de64478033988709f9022ec089ed4c5
 
-False
+True
 
