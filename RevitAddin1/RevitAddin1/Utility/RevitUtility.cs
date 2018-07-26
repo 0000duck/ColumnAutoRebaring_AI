@@ -46,6 +46,7 @@ namespace RevitAddin1
 
             View3D v3dClone = ElementTransformUtils.CopyElement(Singleton.Instance.Document, Singleton.Instance.View3Ds[0].Id, XYZ.BasisZ).Select(x => Singleton.Instance.Document.GetElement(x)).First() as View3D;
             v3dClone.Name = $"V{prefix}_{index}";
+            v3dClone.PartsVisibility = Singleton.Instance.PartsVisibility;
             return v3dClone;
         }
         public static void DeleteView3D(int index)
@@ -102,6 +103,8 @@ namespace RevitAddin1
                 ElementParameterFilter prefixNotContainFilter = new ElementParameterFilter(new List<FilterRule> { prefixNotContainRule });
                 filter = new LogicalOrFilter(new List<ElementFilter> { invisibleFilter, createDateFilter, removeDateFilter, prefixNotContainFilter });
             }
+
+            var obj = Singleton.Instance.TargetCategories;
 
             ParameterFilterElement paramFilterElem =
                 ParameterFilterElement.Create(Singleton.Instance.Document, viewInfo.RevitName, Singleton.Instance.TargetCategoryIds);

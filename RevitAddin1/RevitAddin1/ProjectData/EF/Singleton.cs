@@ -18,8 +18,16 @@ namespace RevitAddin1
         private List<Category> categories;
         private List<Category> targetCategories;
         private List<BuiltInCategory> builtInCates = new List<BuiltInCategory> {
-            BuiltInCategory.OST_Walls, BuiltInCategory.OST_Floors, BuiltInCategory.OST_Stairs, BuiltInCategory.OST_Columns,
-            BuiltInCategory.OST_StructuralColumns, BuiltInCategory.OST_StructuralFraming, BuiltInCategory.OST_GenericModel, BuiltInCategory.OST_StructuralFoundation};
+            // General
+            BuiltInCategory.OST_GenericModel, BuiltInCategory.OST_Parts, 
+            // Construction
+            BuiltInCategory.OST_Site, BuiltInCategory.OST_Entourage,
+            // Stutural
+            BuiltInCategory.OST_Floors, BuiltInCategory.OST_StructuralColumns, BuiltInCategory.OST_StructuralFoundation, BuiltInCategory.OST_StructuralFraming, BuiltInCategory.OST_Rebar, BuiltInCategory.OST_Walls,
+            // Architect
+            BuiltInCategory.OST_Columns, BuiltInCategory.OST_Doors, BuiltInCategory.OST_StairsRailing, BuiltInCategory.OST_Roofs, BuiltInCategory.OST_Windows
+        };
+
         private List<View3D> view3Ds;
         private List<ParameterFilterElement> parameterFilterElements;
         private View activeView;
@@ -131,6 +139,7 @@ namespace RevitAddin1
                 return choosePrefixForm;
             }
         }
+        public PartsVisibility PartsVisibility { get { return View3Ds[0].PartsVisibility; } }
         #endregion
     }
 }
