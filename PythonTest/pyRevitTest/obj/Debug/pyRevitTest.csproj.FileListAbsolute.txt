@@ -47,3 +47,30 @@ E:\Lap trinh\Revit\ColumnAutoRebaring_AI\PythonTest\pyRevitTest\obj\Debug\pyRevi
 E:\Lap trinh\Revit\ColumnAutoRebaring_AI\PythonTest\pyRevitTest\obj\Debug\pyRevitTest_MarkupCompile.lref
 E:\Lap trinh\Revit\ColumnAutoRebaring_AI\PythonTest\pyRevitTest\obj\Debug\Form.baml
 E:\Lap trinh\Revit\ColumnAutoRebaring_AI\PythonTest\pyRevitTest\obj\Debug\pyRevitTest.g.resources
+D:\1. Work\Code Project\1. Revit Addin\0. CurrentProject\PythonTest\pyRevitTest\bin\Debug\pyRevitTest.dll
+D:\1. Work\Code Project\1. Revit Addin\0. CurrentProject\PythonTest\pyRevitTest\bin\Debug\pyRevitTest.pdb
+D:\1. Work\Code Project\1. Revit Addin\0. CurrentProject\PythonTest\pyRevitTest\bin\Debug\IronPython.dll
+D:\1. Work\Code Project\1. Revit Addin\0. CurrentProject\PythonTest\pyRevitTest\bin\Debug\IronPython.Modules.dll
+D:\1. Work\Code Project\1. Revit Addin\0. CurrentProject\PythonTest\pyRevitTest\bin\Debug\IronPython.SQLite.dll
+D:\1. Work\Code Project\1. Revit Addin\0. CurrentProject\PythonTest\pyRevitTest\bin\Debug\IronPython.Wpf.dll
+D:\1. Work\Code Project\1. Revit Addin\0. CurrentProject\PythonTest\pyRevitTest\bin\Debug\Microsoft.Dynamic.dll
+D:\1. Work\Code Project\1. Revit Addin\0. CurrentProject\PythonTest\pyRevitTest\bin\Debug\Microsoft.Scripting.dll
+D:\1. Work\Code Project\1. Revit Addin\0. CurrentProject\PythonTest\pyRevitTest\bin\Debug\Microsoft.Scripting.Metadata.dll
+D:\1. Work\Code Project\1. Revit Addin\0. CurrentProject\PythonTest\pyRevitTest\bin\Debug\Microsoft.VisualStudio.CodeCoverage.Shim.dll
+D:\1. Work\Code Project\1. Revit Addin\0. CurrentProject\PythonTest\pyRevitTest\bin\Debug\IronPython.xml
+D:\1. Work\Code Project\1. Revit Addin\0. CurrentProject\PythonTest\pyRevitTest\bin\Debug\IronPython.Modules.xml
+D:\1. Work\Code Project\1. Revit Addin\0. CurrentProject\PythonTest\pyRevitTest\bin\Debug\IronPython.SQLite.xml
+D:\1. Work\Code Project\1. Revit Addin\0. CurrentProject\PythonTest\pyRevitTest\bin\Debug\IronPython.Wpf.xml
+D:\1. Work\Code Project\1. Revit Addin\0. CurrentProject\PythonTest\pyRevitTest\bin\Debug\Microsoft.Dynamic.xml
+D:\1. Work\Code Project\1. Revit Addin\0. CurrentProject\PythonTest\pyRevitTest\bin\Debug\Microsoft.Scripting.xml
+D:\1. Work\Code Project\1. Revit Addin\0. CurrentProject\PythonTest\pyRevitTest\bin\Debug\Microsoft.Scripting.Metadata.xml
+D:\1. Work\Code Project\1. Revit Addin\0. CurrentProject\PythonTest\pyRevitTest\obj\Debug\pyRevitTest.csprojResolveAssemblyReference.cache
+D:\1. Work\Code Project\1. Revit Addin\0. CurrentProject\PythonTest\pyRevitTest\obj\Debug\Form.g.cs
+D:\1. Work\Code Project\1. Revit Addin\0. CurrentProject\PythonTest\pyRevitTest\obj\Debug\pyRevitTest_MarkupCompile.cache
+D:\1. Work\Code Project\1. Revit Addin\0. CurrentProject\PythonTest\pyRevitTest\obj\Debug\pyRevitTest_MarkupCompile.lref
+D:\1. Work\Code Project\1. Revit Addin\0. CurrentProject\PythonTest\pyRevitTest\obj\Debug\Form.baml
+D:\1. Work\Code Project\1. Revit Addin\0. CurrentProject\PythonTest\pyRevitTest\obj\Debug\pyRevitTest.g.resources
+D:\1. Work\Code Project\1. Revit Addin\0. CurrentProject\PythonTest\pyRevitTest\obj\Debug\pyRevitTest.csproj.CoreCompileInputs.cache
+D:\1. Work\Code Project\1. Revit Addin\0. CurrentProject\PythonTest\pyRevitTest\obj\Debug\pyRevitTest.csproj.CopyComplete
+D:\1. Work\Code Project\1. Revit Addin\0. CurrentProject\PythonTest\pyRevitTest\obj\Debug\pyRevitTest.dll
+D:\1. Work\Code Project\1. Revit Addin\0. CurrentProject\PythonTest\pyRevitTest\obj\Debug\pyRevitTest.pdb

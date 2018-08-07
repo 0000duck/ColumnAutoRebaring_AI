@@ -25,7 +25,7 @@ namespace RevitAddin1
             // Stutural
             BuiltInCategory.OST_Floors, BuiltInCategory.OST_StructuralColumns, BuiltInCategory.OST_StructuralFoundation, BuiltInCategory.OST_StructuralFraming, BuiltInCategory.OST_Rebar, BuiltInCategory.OST_Walls,
             // Architect
-            BuiltInCategory.OST_Columns, BuiltInCategory.OST_Doors, BuiltInCategory.OST_StairsRailing, BuiltInCategory.OST_Roofs, BuiltInCategory.OST_Windows
+            BuiltInCategory.OST_Columns, BuiltInCategory.OST_Doors, BuiltInCategory.OST_StairsRailing, BuiltInCategory.OST_Roofs, BuiltInCategory.OST_Windows, BuiltInCategory.OST_Stairs
         };
 
         private List<View3D> view3Ds;

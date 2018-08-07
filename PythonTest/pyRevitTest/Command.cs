@@ -20,20 +20,20 @@ namespace pyRevitTest
             Singleton.Instance.ScriptScope.SetVariable("commandData", commandData);
             Singleton.Instance.ScriptScope.SetVariable("frm", frm);
 
-            //for (int i = 0; i < Singleton.Instance.SourceString.Length; i++)
-            //{
-            //    try
-            //    {
-            //        Singleton.Instance.ScriptEngine.Execute(Singleton.Instance.SourceString[i], Singleton.Instance.ScriptScope);
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        string mess = $"Error at python code line: {i + 1}\n{ex.Message}";
-            //        throw new Exception(mess);
-            //    }
-            //}
+            for (int i = 0; i < Singleton.Instance.SourceString.Length; i++)
+            {
+                try
+                {
+                    Singleton.Instance.ScriptEngine.Execute(Singleton.Instance.SourceString[i], Singleton.Instance.ScriptScope);
+                }
+                catch (Exception ex)
+                {
+                    string mess = $"Error at python code line: {i + 1}\n{ex.Message}";
+                    throw new Exception(mess);
+                }
+            }
 
-            Singleton.Instance.ScriptSource.Execute(Singleton.Instance.ScriptScope);
+            //Singleton.Instance.ScriptSource.Execute(Singleton.Instance.ScriptScope);
 
 
             return Result.Succeeded;

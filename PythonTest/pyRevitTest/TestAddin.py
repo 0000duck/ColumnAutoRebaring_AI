@@ -18,9 +18,7 @@ tx.Start()
 
 frm.ShowDialog()
 
-myClass = MyClass()
-
 elem = doc.GetElement(sel.PickObject(ObjectType.Element))
-elem.LookupParameter("Comments").Set("Python Add-in")
+elem.LookupParameter("comments").Set("Python Add-in")
 
 tx.Commit()
