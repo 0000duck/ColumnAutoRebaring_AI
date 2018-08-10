@@ -48,13 +48,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CheckGeometry.cs" />
+    <Compile Include="Geometry\CircleEquation.cs" />
+    <Compile Include="Geometry\CheckGeometry.cs" />
     <Compile Include="Command.cs" />
-    <Compile Include="ConstantValue.cs" />
-    <Compile Include="GeomUtil.cs" />
+    <Compile Include="ConstantValue\ConstantValue.cs" />
+    <Compile Include="Geometry\GeomUtil.cs" />
+    <Compile Include="Geometry\LineEquation.cs" />
+    <Compile Include="Geometry\SystemEquation2Hidden.cs" />
     <Compile Include="LoadFamilyOption.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Singleton.cs" />
+    <Compile Include="SelectionFilter.cs" />
+    <Compile Include="Singleton\Singleton.cs" />
     <Compile Include="Utility.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -24,7 +24,10 @@ namespace Addin1Python
         private UIDocument uIDocument;
         private Application application;
         private Selection selection;
-        
+        private Element selectedElement;
+        private RebarBarType selectedRebarBarType;
+        private RebarHookType selectedRebarHookType;
+        private double selectedBarDiameter = -1;
         #endregion
 
         #region Properties
@@ -33,6 +36,7 @@ namespace Addin1Python
         public string Level { get; set; }
         public UIApplication UIApplication { get; set; }
         public Element SelectedRebarTagType { get; set; }
+        public XYZ SelectedXYZ { get; set; }
         public Document Document
         {
             get
@@ -122,6 +126,42 @@ namespace Addin1Python
                 if (selection == null)
                     selection = UIDocument.Selection;
                 return selection;
+            }
+        }
+        public Element SelectedElement
+        {
+            get
+            {
+                if (selectedElement == null)
+                    selectedElement = Document.GetElement(new ElementId(ConstantValue.SelectedIndex));
+                return selectedElement;
+            }
+        }
+        public RebarBarType SelectedRebarBarType
+        {
+            get
+            {
+                if (selectedRebarBarType == null)
+                    selectedRebarBarType = new FilteredElementCollector(Document).OfClass(typeof(RebarBarType)).Cast<RebarBarType>().Where(x => x.Name == ConstantValue.SelectedRebarDiameter).First();
+                return selectedRebarBarType;
+            }
+        }
+        public RebarHookType SelectedRebarHookType
+        {
+            get
+            {
+                if (selectedRebarHookType == null)
+                    selectedRebarHookType = new FilteredElementCollector(Document).OfClass(typeof(RebarHookType)).Cast<RebarHookType>().First();
+                return selectedRebarHookType;
+            }
+        }
+        public double SelectedBarDiameter
+        {
+            get
+            {
+                if (selectedBarDiameter == -1)
+                    selectedBarDiameter = SelectedRebarBarType.BarDiameter;
+                return selectedBarDiameter;
             }
         }
         #endregion

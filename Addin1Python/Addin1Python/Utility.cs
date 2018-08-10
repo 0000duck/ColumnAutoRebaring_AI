@@ -569,5 +569,10 @@ namespace Addin1Python
                 }
             }
         }
+        public static void CreateRebar(Arc arc)
+        {
+            Rebar.CreateFromCurves(Singleton.Instance.Document, RebarStyle.Standard, Singleton.Instance.SelectedRebarBarType, null, null, Singleton.Instance.SelectedElement,
+                XYZ.BasisZ, new List<Curve> { arc }, RebarHookOrientation.Left, RebarHookOrientation.Right, true, true);
+        }
     }
 }

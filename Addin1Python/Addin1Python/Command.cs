@@ -1,11 +1,14 @@
 ﻿using Autodesk.Revit.Attributes;
 using Autodesk.Revit.DB;
+using Autodesk.Revit.DB.Structure;
 using Autodesk.Revit.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Autodesk.Revit.UI.Selection;
+using Geometry;
 
 namespace Addin1Python
 {
@@ -38,6 +41,33 @@ namespace Addin1Python
                 rebarView.Name = $"{Singleton.Instance.Prefix}-{Singleton.Instance.Level}-{layer}";
                 rebarView.ViewTemplateId = Singleton.Instance.RebarPlanTemplateView.Id;
                 rebarView.SetWorksetVisibility(Utility.GetWorkset(layer).Id, WorksetVisibility.Visible);
+            }
+
+            Singleton.Instance.Transaction.Commit();
+            return Result.Succeeded;
+        }
+    }
+    [Transaction(TransactionMode.Manual)]
+    public class CreateCircleRebar : IExternalCommand
+    {
+        public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
+        {
+            Singleton.Instance = new Singleton();
+            Singleton.Instance.UIApplication = commandData.Application;
+            Singleton.Instance.Transaction.Start();
+
+            Singleton.Instance.SelectedXYZ = new XYZ(577.742794242221, 1379.77900850647, 14.7637795275591);
+
+            //Rebar rebar = Singleton.Instance.Document.GetElement(Singleton.Instance.Selection.PickObject(ObjectType.Element, new RebarArcSelectionFilter())) as Rebar;
+            //Curve curve = rebar.GetCenterlineCurves(true, false, false, MultiplanarOption.IncludeOnlyPlanarCurves, 0).First();
+            //double radius = rebar.LookupParameter("A").AsDouble();
+
+            CircleEquation ce = new CircleEquation(Singleton.Instance.SelectedXYZ, GeomUtil.milimeter2Feet(14500));
+            ce.CalculateDistancesList(GeomUtil.milimeter2Feet(11700));
+
+            foreach (var item in ce.StandardArcs)
+            {
+                Utility.CreateRebar(item);
             }
 
             Singleton.Instance.Transaction.Commit();
