@@ -28,6 +28,8 @@ namespace Addin1Python
         private RebarBarType selectedRebarBarType;
         private RebarHookType selectedRebarHookType;
         private double selectedBarDiameter = -1;
+        private Plane activePlane;
+        private SketchPlane activeSketchPlane;
         #endregion
 
         #region Properties
@@ -37,6 +39,7 @@ namespace Addin1Python
         public UIApplication UIApplication { get; set; }
         public Element SelectedRebarTagType { get; set; }
         public XYZ SelectedXYZ { get; set; }
+        public List<Rebar> Rebars { get; set; } = new List<Rebar>();
         public Document Document
         {
             get
@@ -162,6 +165,24 @@ namespace Addin1Python
                 if (selectedBarDiameter == -1)
                     selectedBarDiameter = SelectedRebarBarType.BarDiameter;
                 return selectedBarDiameter;
+            }
+        }
+        public Plane ActivePlane
+        {
+            get
+            {
+                if (activePlane == null)
+                    activePlane = Plane.CreateByOriginAndBasis(ActiveView.Origin, ActiveView.RightDirection, ActiveView.UpDirection);
+                return activePlane;
+            }
+        }
+        public SketchPlane ActiveSketchPlane
+        {
+            get
+            {
+                if (activeSketchPlane == null)
+                    activeSketchPlane = SketchPlane.Create(Document, ActivePlane);
+                return activeSketchPlane;
             }
         }
         #endregion

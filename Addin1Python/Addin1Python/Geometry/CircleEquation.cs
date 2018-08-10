@@ -101,7 +101,7 @@ namespace Addin1Python
             {
                 StandardArcs.Add(GetArc(Math.PI, i * trueLength, targetLength, false));
             }
-            StandardArcs.Add(GetArc(Math.PI, num * trueLength, perimeter - num *trueLength+ Singleton.Instance.SelectedBarDiameter * ConstantValue.MultiplyDevelopment, false));
+            StandardArcs.Add(GetArc(Math.PI, num * trueLength, perimeter - num *trueLength + Singleton.Instance.SelectedBarDiameter * ConstantValue.MultiplyDevelopment, false));
         }
     }
 }
