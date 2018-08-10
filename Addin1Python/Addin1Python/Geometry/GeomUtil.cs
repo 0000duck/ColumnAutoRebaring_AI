@@ -188,6 +188,16 @@ namespace Geometry
             return (first.Z < second.Z);
         }
 
+        public static bool IsSmallerOrEqual(XYZ first, XYZ second)
+        {
+            return IsEqual(first, second) || IsSmaller(first, second);
+        }
+
+        public static bool IsSmallerOrEqual(double first, double second)
+        {
+            return IsEqual(first, second) || IsSmaller(first, second);
+        }
+
         /// <summary>
         /// Kiểm tra giá trị 1 có nhỏ hơn giá trị 2 hay không trong môi trường Revit
         /// True: nhỏ hơn, False: lớn hơn hoặc bằng
@@ -234,6 +244,16 @@ namespace Geometry
         {
             if (IsEqual(first, second)) return false;
             return first > second;
+        }
+
+        public static bool IsBiggerOrEqual(XYZ first, XYZ second)
+        {
+            return IsEqual(first, second) || IsBigger(first, second);
+        }
+
+        public static bool IsBiggerOrEqual(double first, double second)
+        {
+            return IsEqual(first, second) || IsBigger(first, second);
         }
 
         /// <summary>

@@ -13,7 +13,7 @@ using Geometry;
 namespace Addin1Python
 {
     [Transaction(TransactionMode.Manual)]
-    public class Command: IExternalCommand
+    public class Command : IExternalCommand
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
@@ -21,7 +21,7 @@ namespace Addin1Python
             Singleton.Instance.UIApplication = commandData.Application;
             Singleton.Instance.Transaction.Start();
 
-            Singleton.Instance.Prefix = "18B";
+            SingleWPF.Instance.Prefix = "18B";
             Singleton.Instance.Level = "SSLB3-TS";
 
             View viewPlan = null;
@@ -30,7 +30,7 @@ namespace Addin1Python
                 ViewFamilyType viewType = Singleton.Instance.Document.GetElement(v.GetTypeId()) as ViewFamilyType;
                 if (viewType == null) continue;
                 if (viewType.ViewFamily != ViewFamily.StructuralPlan) continue;
-                if (v.Name != $"{Singleton.Instance.Prefix}-{Singleton.Instance.Level}-DV") continue;
+                if (v.Name != $"{SingleWPF.Instance.Prefix}-{Singleton.Instance.Level}-DV") continue;
                 viewPlan = v; break;
             }
 
@@ -38,7 +38,7 @@ namespace Addin1Python
             foreach (string layer in layers)
             {
                 View rebarView = Singleton.Instance.Document.GetElement(ElementTransformUtils.CopyElement(Singleton.Instance.Document, viewPlan.Id, XYZ.BasisZ).First()) as View;
-                rebarView.Name = $"{Singleton.Instance.Prefix}-{Singleton.Instance.Level}-{layer}";
+                rebarView.Name = $"{SingleWPF.Instance.Prefix}-{Singleton.Instance.Level}-{layer}";
                 rebarView.ViewTemplateId = Singleton.Instance.RebarPlanTemplateView.Id;
                 rebarView.SetWorksetVisibility(Utility.GetWorkset(layer).Id, WorksetVisibility.Visible);
             }
@@ -53,7 +53,12 @@ namespace Addin1Python
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
             Singleton.Instance = new Singleton();
+            SingleWPF.Instance = new SingleWPF();
+
             Singleton.Instance.UIApplication = commandData.Application;
+            Singleton.Instance.InputForm.ShowDialog();
+            if (!SingleWPF.Instance.IsFormClosedOk) return Result.Succeeded;
+
             Singleton.Instance.Transaction.Start();
 
             Singleton.Instance.ActiveView.SketchPlane = Singleton.Instance.ActiveSketchPlane;
@@ -76,18 +81,20 @@ namespace Addin1Python
 
             foreach (XYZ point in points)
             {
-                double length = GeomUtil.GetLength(point, Singleton.Instance.SelectedXYZ);
+                double length = GeomUtil.GetLength(new XYZ(point.X, 0, 0), new XYZ(Singleton.Instance.SelectedXYZ.X, 0, 0));
 
-                CircleEquation ce = new CircleEquation(Singleton.Instance.SelectedXYZ, length);
-                ce.CalculateDistancesList(GeomUtil.milimeter2Feet(11700));
+                CircleEquation ce = new CircleEquation(Singleton.Instance.SelectedXYZ, length, point.Z);
+                ce.CalculateDistancesList(GeomUtil.milimeter2Feet(11700), SingleWPF.Instance.IsOtherwiseClock);
 
-                foreach (var item in ce.StandardArcs)
+                foreach (List<Arc> arcs in ce.StandardArcs)
                 {
-                    Singleton.Instance.Rebars.Add(Utility.CreateRebar(item));
+                    Rebar rebar = Utility.CreateRebar(arcs);
+                    rebar.LookupParameter("Workset").Set(Utility.GetWorkset().Id.IntegerValue);
+                    Singleton.Instance.Rebars.Add(rebar);
                 }
+
             }
 
-            Singleton.Instance.Selection.SetElementIds(Singleton.Instance.Rebars.Select(x => x.Id).ToList());
             Singleton.Instance.Transaction.Commit();
             return Result.Succeeded;
         }

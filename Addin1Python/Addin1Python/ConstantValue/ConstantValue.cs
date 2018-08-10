@@ -13,8 +13,5 @@ namespace Addin1Python
 
         public static int SelectedIndex = 1794536;
         public static string SeletedRebarShape = "TC_Arc";
-
-        public static string SelectedRebarDiameter = "Ø20";
-        public static int MultiplyDevelopment = 40;
     }
 }

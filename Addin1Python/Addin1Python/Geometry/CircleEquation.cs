@@ -1,4 +1,5 @@
 ﻿using Autodesk.Revit.DB;
+using Geometry;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,8 @@ namespace Addin1Python
         public UV CenterUV { get; set; }
         public double Z { get; set; }
         public double Radius { get; set; }
-        public List<Arc> StandardArcs { get; set; } = new List<Arc>();
+        public List<List<Arc>> StandardArcs { get; set; } = new List<List<Arc>>();
+        
         public double Perimeter
         {
             get
@@ -42,7 +44,8 @@ namespace Addin1Python
         {
             CenterUV = center; Radius = radius; Z = 0;
         }
-        public CircleEquation(XYZ center, double radius) : this(new UV(center.X, center.Y), radius) { Z = center.Z; }
+        public CircleEquation(XYZ center, double radius) : this(center, radius, center.Z) { }
+        public CircleEquation(XYZ center, double radius, double z) : this(new UV(center.X, center.Y), radius) { Z = z; }
         public CircleEquation(Arc arc) : this(arc.Center, arc.Radius) { }
 
         public double ConvertLength2Angle(double length)
@@ -93,15 +96,32 @@ namespace Addin1Python
             double startAngle = firstInitAngle + (isOtherwiseClock ? ConvertLength2Angle(distance1) : -ConvertLength2Angle(distance1));
             return GetArc(startAngle, plusLength, isOtherwiseClock);
         }
-        public void CalculateDistancesList(double targetLength)
+        public void CalculateDistancesList(double targetLength, bool isOtherwiseClock)
         {
-            double trueLength = targetLength - Singleton.Instance.SelectedBarDiameter * ConstantValue.MultiplyDevelopment;
-            double num = Math.Floor(Perimeter / trueLength);
+            double trueLength = targetLength - SingleWPF.Instance.SelectedBarDiameter * SingleWPF.Instance.DevelopMultiply;
+            double num = Perimeter / trueLength;
+            if (GeomUtil.IsSmallerOrEqual(num, 1))
+            {
+                double angle1 = (ConvertLength2Angle(SingleWPF.Instance.SelectedBarDiameter) * SingleWPF.Instance.DevelopMultiply);
+                StandardArcs.Add(new List<Arc> { GetArc(Math.PI, -Math.PI), GetArc(0, -(Math.PI + angle1)) });
+                return;
+            }
+            double num2 = Perimeter / targetLength;
+            if (GeomUtil.IsSmallerOrEqual(num2, 1))
+            {
+                double angle1 = (ConvertLength2Angle(targetLength) - Math.PI * 2) / 2;
+                StandardArcs.Add(new List<Arc> { GetArc(Math.PI + angle1, -Math.PI), GetArc(angle1, -(Math.PI + angle1*2))});
+                double angle2 = (ConvertLength2Angle(SingleWPF.Instance.SelectedBarDiameter * SingleWPF.Instance.DevelopMultiply));
+                StandardArcs.Add(new List<Arc> { GetArc(Math.PI + angle2, -angle2 * 2) });
+                return;
+            }
+
+            num = Math.Round(num, 0);
             for (int i = 0; i < num; i++)
             {
-                StandardArcs.Add(GetArc(Math.PI, i * trueLength, targetLength, false));
+                StandardArcs.Add(new List<Arc> { GetArc(Math.PI, i * trueLength, targetLength, isOtherwiseClock) });
             }
-            StandardArcs.Add(GetArc(Math.PI, num * trueLength, perimeter - num *trueLength + Singleton.Instance.SelectedBarDiameter * ConstantValue.MultiplyDevelopment, false));
+            StandardArcs.Add(new List<Arc> { GetArc(Math.PI, num * trueLength, perimeter - num * trueLength + SingleWPF.Instance.SelectedBarDiameter * SingleWPF.Instance.DevelopMultiply, isOtherwiseClock) });
         }
     }
 }
