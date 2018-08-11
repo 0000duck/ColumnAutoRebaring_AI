@@ -64,8 +64,6 @@ namespace Addin1Python
             Singleton.Instance.ActiveView.SketchPlane = Singleton.Instance.ActiveSketchPlane;
             Singleton.Instance.ActiveView.HideActiveWorkPlane();
 
-            Singleton.Instance.SelectedXYZ = new XYZ(577.742794242221, 1379.77900850647, 14.7637795275591);
-
             List<XYZ> points = new List<XYZ>();
             while (true)
             {
@@ -88,12 +86,55 @@ namespace Addin1Python
 
                 foreach (List<Arc> arcs in ce.StandardArcs)
                 {
-                    Rebar rebar = Utility.CreateRebar(arcs);
+                    Rebar rebar = Utility.CreateCircleRebar(arcs);
                     rebar.LookupParameter("Workset").Set(Utility.GetWorkset().Id.IntegerValue);
                     Singleton.Instance.Rebars.Add(rebar);
                 }
 
             }
+
+            Singleton.Instance.Transaction.Commit();
+            return Result.Succeeded;
+        }
+    }
+
+    [Transaction(TransactionMode.Manual)]
+    public class CreateCentrifugalRebar : IExternalCommand
+    {
+        public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
+        {
+            Singleton.Instance = new Singleton();
+            SingleWPF.Instance = new SingleWPF();
+
+            Singleton.Instance.UIApplication = commandData.Application;
+            Singleton.Instance.InputCentrifugalForm.ShowDialog();
+            if (!SingleWPF.Instance.IsFormClosedOk) return Result.Succeeded;
+
+            Singleton.Instance.Transaction.Start();
+
+            Singleton.Instance.ActiveView.SketchPlane = Singleton.Instance.ActiveSketchPlane;
+            Singleton.Instance.ActiveView.HideActiveWorkPlane();
+
+            List<Rebar> rebars = new List<Rebar>();
+            while (true)
+            {
+                try
+                {
+                    rebars.Add(Singleton.Instance.Document.GetElement(Singleton.Instance.Selection.PickObject(ObjectType.Element, new RebarSelectionFilter())) as Rebar);
+                }
+                catch (Autodesk.Revit.Exceptions.OperationCanceledException)
+                {
+                    break;
+                }
+            }
+            XYZ point = Singleton.Instance.Selection.PickPoint();
+
+            double length = GeomUtil.GetLength(new XYZ(point.X, 0, 0), new XYZ(Singleton.Instance.SelectedXYZ.X, 0, 0));
+
+            CircleEquation ce = new CircleEquation(Singleton.Instance.SelectedXYZ, length, point.Z);
+            ce.CalculateNumberWithAngle(SingleWPF.Instance.Spacing, SingleWPF.Instance.Angle, false);
+
+            rebars.ForEach(x => Utility.CreateCentrifugalRebar(x, ce));
 
             Singleton.Instance.Transaction.Commit();
             return Result.Succeeded;

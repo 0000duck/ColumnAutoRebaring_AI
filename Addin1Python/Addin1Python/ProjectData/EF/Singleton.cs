@@ -14,6 +14,7 @@ namespace Addin1Python
     public class Singleton
     {
         #region Variables
+        private XYZ selectedXYZ;
         private Document document;
         private Transaction transaction;
         private List<View> views;
@@ -31,6 +32,7 @@ namespace Addin1Python
         private InputForm inputForm;
         private WorksetDefaultVisibilitySettings worksetDefaultVisibilitySettings;
         private List<RebarBarType> rebarTypes;
+        private InputCentrifugalForm inputCentrifugalForm;
         #endregion
 
         #region Properties
@@ -38,8 +40,15 @@ namespace Addin1Python
         public string Level { get; set; }
         public UIApplication UIApplication { get; set; }
         public Element SelectedRebarTagType { get; set; }
-        public XYZ SelectedXYZ { get; set; }
         public List<Rebar> Rebars { get; set; } = new List<Rebar>();
+        public XYZ SelectedXYZ
+        {
+            get
+            {
+                if (selectedXYZ == null) selectedXYZ = ConstantValue.SelectedXYZ;
+                return selectedXYZ;
+            }
+        }
         public Document Document
         {
             get
@@ -192,6 +201,15 @@ namespace Addin1Python
                 if (rebarTypes == null)
                     rebarTypes = new FilteredElementCollector(Document).OfClass(typeof(RebarBarType)).Cast<RebarBarType>().ToList();
                 return rebarTypes;
+            }
+        }
+        public InputCentrifugalForm InputCentrifugalForm
+        {
+            get
+            {
+                if (inputCentrifugalForm == null)
+                    inputCentrifugalForm = new InputCentrifugalForm();
+                return inputCentrifugalForm;
             }
         }
         #endregion

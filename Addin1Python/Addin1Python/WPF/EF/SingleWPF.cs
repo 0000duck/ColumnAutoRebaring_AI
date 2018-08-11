@@ -3,6 +3,7 @@ using Autodesk.Revit.DB;
 using Autodesk.Revit.DB.Structure;
 using Autodesk.Revit.UI;
 using Autodesk.Revit.UI.Selection;
+using Geometry;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,6 +23,8 @@ namespace Addin1Python
         private int developMultiply = 40;
         private List<RebarBarType> rebarBarTypes;
         private bool isOtherwiseClock;
+        private double spacingMM=150;
+        private double angleDeg=360;
         #endregion
 
         #region Properties
@@ -101,6 +104,46 @@ namespace Addin1Python
                 if (isOtherwiseClock == value) return;
                 isOtherwiseClock = value;
                 OnPropertyChanged();
+            }
+        }
+        public double SpacingMM
+        {
+            get
+            {
+                return spacingMM;
+            }
+            set
+            {
+                if (spacingMM == value) return;
+                spacingMM = value;
+                OnPropertyChanged();
+            }
+        }
+        public double Spacing
+        {
+            get
+            {
+                return GeomUtil.milimeter2Feet(SpacingMM);
+            }
+        }
+        public double AngleDef
+        {
+            get
+            {
+                return angleDeg;
+            }
+            set
+            {
+                if (angleDeg == value) return;
+                angleDeg = value;
+                OnPropertyChanged();
+            }
+        }
+        public double Angle
+        {
+            get
+            {
+                return Math.PI * angleDeg / 180;
             }
         }
         #endregion

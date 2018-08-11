@@ -23,4 +23,17 @@ namespace Addin1Python
             throw new NotImplementedException();
         }
     }
+    public class RebarSelectionFilter : ISelectionFilter
+    {
+        public bool AllowElement(Element elem)
+        {
+            if (!(elem is Rebar)) return false;
+            return true;
+        }
+
+        public bool AllowReference(Reference reference, XYZ position)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }

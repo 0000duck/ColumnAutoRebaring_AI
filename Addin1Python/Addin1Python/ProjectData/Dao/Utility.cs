@@ -578,10 +578,30 @@ namespace Addin1Python
                 }
             }
         }
-        public static Rebar CreateRebar(List<Arc> arcs)
+        public static Rebar CreateCircleRebar(List<Arc> arcs)
         {
             return Rebar.CreateFromCurves(Singleton.Instance.Document, RebarStyle.Standard, SingleWPF.Instance.SelectedRebarType, null, null, Singleton.Instance.SelectedElement,
                 XYZ.BasisZ, arcs.Cast<Curve>().ToList(), RebarHookOrientation.Left, RebarHookOrientation.Right, true, true);
+        }
+        public static List<Rebar> CreateCentrifugalRebar(Rebar rb, CircleEquation ce)
+        {
+            int sum = ce.Number;
+            List<int> nums = new List<int>();
+            while (sum > 200)
+            {
+                nums.Add(200);
+                sum -= 199;
+            }
+            nums.Add(sum);
+
+            foreach (int num in nums)
+            {
+                var res = RadialArray.ArrayElementWithoutAssociation(Singleton.Instance.Document, Singleton.Instance.ActiveView, rb.Id, num,
+                    Line.CreateBound(Singleton.Instance.SelectedXYZ, Singleton.Instance.SelectedXYZ + XYZ.BasisZ), ce.Angle, ArrayAnchorMember.Second);
+                rb = Singleton.Instance.Document.GetElement(res.Last()) as Rebar;
+            }
+            
+            return null;
         }
     }
 }

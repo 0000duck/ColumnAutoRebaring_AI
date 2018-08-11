@@ -19,6 +19,8 @@ namespace Addin1Python
         public double Z { get; set; }
         public double Radius { get; set; }
         public List<List<Arc>> StandardArcs { get; set; } = new List<List<Arc>>();
+        public int Number { get; set; }
+        public double Angle { get; set; }
         
         public double Perimeter
         {
@@ -122,6 +124,27 @@ namespace Addin1Python
                 StandardArcs.Add(new List<Arc> { GetArc(Math.PI, i * trueLength, targetLength, isOtherwiseClock) });
             }
             StandardArcs.Add(new List<Arc> { GetArc(Math.PI, num * trueLength, perimeter - num * trueLength + SingleWPF.Instance.SelectedBarDiameter * SingleWPF.Instance.DevelopMultiply, isOtherwiseClock) });
+        }
+        public void CalculateNumberWithAngle(double spac, double sumAngle, bool isOtherwiseClock)
+        {
+            Angle = ConvertLength2Angle(spac);
+            double num = sumAngle / Angle, rNum = Math.Round(num, 0);
+            if (sumAngle == Math.PI * 2)
+            {
+                if (GeomUtil.IsSmaller(num, rNum +0.5))
+                {
+                    Number = (int)rNum;
+                }
+                else
+                {
+                    Number = (int)rNum + 1;
+                }
+            }
+            else
+            {
+                Number = (int)rNum + 1;
+            }
+            Angle = isOtherwiseClock ? Angle : -Angle;
         }
     }
 }

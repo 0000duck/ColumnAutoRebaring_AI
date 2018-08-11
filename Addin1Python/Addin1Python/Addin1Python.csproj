@@ -60,6 +60,9 @@
     <Compile Include="Geometry\LineEquation.cs" />
     <Compile Include="Geometry\SystemEquation2Hidden.cs" />
     <Compile Include="WPF\EF\SingleWPF.cs" />
+    <Compile Include="WPF\InputCentrifugalForm.xaml.cs">
+      <DependentUpon>InputCentrifugalForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WPF\InputForm.xaml.cs">
       <DependentUpon>InputForm.xaml</DependentUpon>
     </Compile>
@@ -68,12 +71,17 @@
     <Compile Include="SelectionFilter.cs" />
     <Compile Include="ProjectData\EF\Singleton.cs" />
     <Compile Include="ProjectData\Dao\Utility.cs" />
+    <Compile Include="WPF\Property\Button\CentrifugalOkClicked.cs" />
     <Compile Include="WPF\Property\Button\OkClicked.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="WPF\InputCentrifugalForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="WPF\InputForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
