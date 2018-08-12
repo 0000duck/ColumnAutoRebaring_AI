@@ -84,14 +84,20 @@ namespace Addin1Python
                 CircleEquation ce = new CircleEquation(Singleton.Instance.SelectedXYZ, length, point.Z);
                 ce.CalculateDistancesList(GeomUtil.milimeter2Feet(11700), SingleWPF.Instance.IsOtherwiseClock);
 
-                foreach (List<Arc> arcs in ce.StandardArcs)
+                int countX = ce.StandardArcs.Count;
+                RebarType rebarType = ce.StandardArcs[0].Count == 1 ? RebarType.Type1 : RebarType.Type2;
+                for (int i = 0; i < ce.StandardArcs.Count; i++)
                 {
-                    Rebar rebar = Utility.CreateCircleRebar(arcs);
+                    Rebar rebar = Utility.CreateCircleRebar(ce.StandardArcs[i]);
                     rebar.LookupParameter("Workset").Set(Utility.GetWorkset().Id.IntegerValue);
-                    Singleton.Instance.Rebars.Add(rebar);
-                }
 
+                    Singleton.Instance.RebarInfos.Add(new RebarInfo(rebar, i, countX, ce.Radius, rebarType));
+                }
             }
+
+            RebarInfoDao.Categozie();
+            Singleton.Instance.Document.Regenerate();
+            AssemblyInstanceInfoDao.CreateAssemblyInstances();
 
             Singleton.Instance.Transaction.Commit();
             return Result.Succeeded;
