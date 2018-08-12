@@ -60,6 +60,10 @@
     <Compile Include="Geometry\LineEquation.cs" />
     <Compile Include="Geometry\SystemEquation2Hidden.cs" />
     <Compile Include="ProjectData\Dao\AssemblyInstanceInfoDao.cs" />
+<<<<<<< HEAD
+=======
+    <Compile Include="ProjectData\Dao\RebarInfoDao.cs" />
+>>>>>>> 38c4cfde3c38e33ff6981985bf2686d613a92af5
     <Compile Include="ProjectData\EF\AssemblyInstanceInfo.cs" />
     <Compile Include="ProjectData\EF\RebarInfo.cs" />
     <Compile Include="WPF\EF\SingleWPF.cs" />

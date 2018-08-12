@@ -118,7 +118,7 @@ namespace Addin1Python
                 return;
             }
 
-            num = Math.Round(num, 0);
+            num = Math.Floor(num);
             for (int i = 0; i < num; i++)
             {
                 StandardArcs.Add(new List<Arc> { GetArc(Math.PI, i * trueLength, targetLength, isOtherwiseClock) });

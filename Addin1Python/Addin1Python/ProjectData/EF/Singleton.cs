@@ -41,7 +41,11 @@ namespace Addin1Python
         public string Level { get; set; }
         public UIApplication UIApplication { get; set; }
         public Element SelectedRebarTagType { get; set; }
+<<<<<<< HEAD
         public List<RebarInfo> CircleRebarInfos { get; set; } = new List<RebarInfo>();
+=======
+        public List<RebarInfo> RebarInfos { get; set; } = new List<RebarInfo>();
+>>>>>>> 38c4cfde3c38e33ff6981985bf2686d613a92af5
         public List<AssemblyInstanceInfo> AssemblyInstanceInfos { get; set; } = new List<AssemblyInstanceInfo>();
         public XYZ SelectedXYZ
         {
