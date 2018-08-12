@@ -33,6 +33,7 @@ namespace Addin1Python
         private WorksetDefaultVisibilitySettings worksetDefaultVisibilitySettings;
         private List<RebarBarType> rebarTypes;
         private InputCentrifugalForm inputCentrifugalForm;
+        private List<Category> categories;
         #endregion
 
         #region Properties
@@ -40,7 +41,8 @@ namespace Addin1Python
         public string Level { get; set; }
         public UIApplication UIApplication { get; set; }
         public Element SelectedRebarTagType { get; set; }
-        public List<Rebar> Rebars { get; set; } = new List<Rebar>();
+        public List<RebarInfo> CircleRebarInfos { get; set; } = new List<RebarInfo>();
+        public List<AssemblyInstanceInfo> AssemblyInstanceInfos { get; set; } = new List<AssemblyInstanceInfo>();
         public XYZ SelectedXYZ
         {
             get
@@ -210,6 +212,21 @@ namespace Addin1Python
                 if (inputCentrifugalForm == null)
                     inputCentrifugalForm = new InputCentrifugalForm();
                 return inputCentrifugalForm;
+            }
+        }
+        public List<Category> Categories
+        {
+            get
+            {
+                if (categories == null)
+                {
+                    categories = new List<Category>();
+                    foreach (Category cate in Singleton.Instance.Document.Settings.Categories)
+                    {
+                        categories.Add(cate);
+                    } 
+                }
+                return categories;
             }
         }
         #endregion

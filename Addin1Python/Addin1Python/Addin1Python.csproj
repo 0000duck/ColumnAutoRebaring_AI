@@ -59,6 +59,9 @@
     <Compile Include="Geometry\GeomUtil.cs" />
     <Compile Include="Geometry\LineEquation.cs" />
     <Compile Include="Geometry\SystemEquation2Hidden.cs" />
+    <Compile Include="ProjectData\Dao\AssemblyInstanceInfoDao.cs" />
+    <Compile Include="ProjectData\EF\AssemblyInstanceInfo.cs" />
+    <Compile Include="ProjectData\EF\RebarInfo.cs" />
     <Compile Include="WPF\EF\SingleWPF.cs" />
     <Compile Include="WPF\InputCentrifugalForm.xaml.cs">
       <DependentUpon>InputCentrifugalForm.xaml</DependentUpon>

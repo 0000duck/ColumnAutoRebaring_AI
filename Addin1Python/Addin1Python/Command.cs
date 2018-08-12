@@ -84,14 +84,31 @@ namespace Addin1Python
                 CircleEquation ce = new CircleEquation(Singleton.Instance.SelectedXYZ, length, point.Z);
                 ce.CalculateDistancesList(GeomUtil.milimeter2Feet(11700), SingleWPF.Instance.IsOtherwiseClock);
 
-                foreach (List<Arc> arcs in ce.StandardArcs)
+                RebarType rebarType = ce.StandardArcs[0].Count == 1 ? RebarType.Type1 : RebarType.Type2;
+                int count = ce.StandardArcs.Count;
+                for (int i = 0; i < ce.StandardArcs.Count; i++)
                 {
-                    Rebar rebar = Utility.CreateCircleRebar(arcs);
+                    Rebar rebar = Utility.CreateCircleRebar(ce.StandardArcs[i]);
                     rebar.LookupParameter("Workset").Set(Utility.GetWorkset().Id.IntegerValue);
-                    Singleton.Instance.Rebars.Add(rebar);
-                }
 
+
+                    Singleton.Instance.CircleRebarInfos.Add(new RebarInfo() { Rebar = rebar, Count = count, Index = i, RebarType = rebarType, Radius = ce.Radius });
+                }
             }
+
+            Singleton.Instance.Document.Regenerate();
+
+
+            //foreach (RebarInfo rebarInfo in Singleton.Instance.CircleRebarInfos)
+            //{
+            //    AssemblyInstanceInfoDao.GetAssemblyInstanceInfo(rebarInfo).AddRebar(rebarInfo.Rebar);
+            //}
+            //for (int i = 0; i < Singleton.Instance.CircleRebarInfos.Count; i++)
+            //{
+            //    List<Rebar> rebars = new List<Rebar> { Singleton.Instance.CircleRebarInfos[0].Rebar, Singleton.Instance.CircleRebarInfos[1].Rebar };
+            //    AssemblyInstanceInfoDao.GetAssemblyInstanceInfo(Singleton.Instance.CircleRebarInfos[0]).AddRebar(rebars);
+            //    break;
+            //}
 
             Singleton.Instance.Transaction.Commit();
             return Result.Succeeded;
