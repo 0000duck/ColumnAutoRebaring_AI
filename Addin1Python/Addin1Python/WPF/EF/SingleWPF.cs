@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace Addin1Python
 {
-    public class SingleWPF:INotifyPropertyChanged
+    public class SingleWPF : INotifyPropertyChanged
     {
         #region Variables
         private string prefix = "18Z";
@@ -23,8 +23,9 @@ namespace Addin1Python
         private int developMultiply = 40;
         private List<RebarBarType> rebarBarTypes;
         private bool isOtherwiseClock;
-        private double spacingMM=150;
-        private double angleDeg=360;
+        private double spacingMM = 150;
+        private double angleDeg = 360;
+        private string viewName = "18E-SSL02-2-00";
         #endregion
 
         #region Properties
@@ -144,6 +145,19 @@ namespace Addin1Python
             get
             {
                 return Math.PI * angleDeg / 180;
+            }
+        }
+        public string ViewName
+        {
+            get
+            {
+                return viewName;
+            }
+            set
+            {
+                if (viewName == value) return;
+                viewName = value;
+                OnPropertyChanged();
             }
         }
         #endregion

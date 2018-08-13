@@ -34,6 +34,7 @@ namespace Addin1Python
         private List<RebarBarType> rebarTypes;
         private InputCentrifugalForm inputCentrifugalForm;
         private List<Category> categories;
+        private View selectedPlanView;
         #endregion
 
         #region Properties
@@ -41,11 +42,7 @@ namespace Addin1Python
         public string Level { get; set; }
         public UIApplication UIApplication { get; set; }
         public Element SelectedRebarTagType { get; set; }
-<<<<<<< HEAD
         public List<RebarInfo> CircleRebarInfos { get; set; } = new List<RebarInfo>();
-=======
-        public List<RebarInfo> RebarInfos { get; set; } = new List<RebarInfo>();
->>>>>>> 38c4cfde3c38e33ff6981985bf2686d613a92af5
         public List<AssemblyInstanceInfo> AssemblyInstanceInfos { get; set; } = new List<AssemblyInstanceInfo>();
         public XYZ SelectedXYZ
         {
@@ -231,6 +228,25 @@ namespace Addin1Python
                     } 
                 }
                 return categories;
+            }
+        }
+        public View SelectedPlanView
+        {
+            get
+            {
+                if (selectedPlanView == null)
+                {
+                    foreach (View view in Views)
+                    {
+                        ViewFamilyType vft = Document.GetElement(view.GetTypeId()) as ViewFamilyType;
+                        if (vft == null) continue;
+                        if (vft.ViewFamily != ViewFamily.StructuralPlan) continue;
+                        if (view.Name != SingleWPF.Instance.ViewName) continue;
+                        selectedPlanView = view;
+                        break;
+                    }
+                }
+                return selectedPlanView;
             }
         }
         #endregion

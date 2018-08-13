@@ -60,10 +60,7 @@
     <Compile Include="Geometry\LineEquation.cs" />
     <Compile Include="Geometry\SystemEquation2Hidden.cs" />
     <Compile Include="ProjectData\Dao\AssemblyInstanceInfoDao.cs" />
-<<<<<<< HEAD
-=======
     <Compile Include="ProjectData\Dao\RebarInfoDao.cs" />
->>>>>>> 38c4cfde3c38e33ff6981985bf2686d613a92af5
     <Compile Include="ProjectData\EF\AssemblyInstanceInfo.cs" />
     <Compile Include="ProjectData\EF\RebarInfo.cs" />
     <Compile Include="WPF\EF\SingleWPF.cs" />
@@ -78,6 +75,9 @@
     <Compile Include="SelectionFilter.cs" />
     <Compile Include="ProjectData\EF\Singleton.cs" />
     <Compile Include="ProjectData\Dao\Utility.cs" />
+    <Compile Include="WPF\InputViewCircleRebar.xaml.cs">
+      <DependentUpon>InputViewCircleRebar.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WPF\Property\Button\CentrifugalOkClicked.cs" />
     <Compile Include="WPF\Property\Button\OkClicked.cs" />
   </ItemGroup>
@@ -90,6 +90,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WPF\InputForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WPF\InputViewCircleRebar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

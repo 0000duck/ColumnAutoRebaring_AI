@@ -13,7 +13,7 @@ namespace Addin1Python
         {
             List<List<RebarInfo>> rebarInfosList = new List<List<RebarInfo>>();
             int countX = -1; RebarType rebarType = RebarType.Type1;
-            foreach (RebarInfo rebarInfo in Singleton.Instance.RebarInfos)
+            foreach (RebarInfo rebarInfo in Singleton.Instance.CircleRebarInfos)
             {
                 if (countX != rebarInfo.CountX || rebarType != rebarInfo.RebarType)
                 {
@@ -45,7 +45,7 @@ namespace Addin1Python
         }
         public static void ShowValue()
         {
-            foreach (RebarInfo rebarInfo in Singleton.Instance.RebarInfos)
+            foreach (RebarInfo rebarInfo in Singleton.Instance.CircleRebarInfos)
             {
                 string value = $"R:{GeomUtil.feet2Milimeter(rebarInfo.Radius):0}-X:{rebarInfo.IndexX}_{rebarInfo.CountX}-Y:{rebarInfo.IndexY}_{rebarInfo.CountY}";
                     rebarInfo.Rebar.LookupParameter("Comments").Set(value);
