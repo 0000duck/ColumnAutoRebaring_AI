@@ -14,14 +14,14 @@ namespace Addin1Python
         public int IndexY { get; set; } = -1;
         public int CountX { get; set; } = -1;
         public int CountY { get; set; } = -1;
-        public double Radius { get; set; } = -1;
+        public ArcInfo ArcInfo { get; set; }
         public RebarType RebarType { get; set; }
-        public RebarInfo(Rebar rebar, int indexX, int countX, double radius, RebarType rebarType)
+        public RebarInfo(Rebar rebar, ArcInfo arcInfo, int indexX, int countX, RebarType rebarType)
         {
             Rebar = rebar;
+            ArcInfo = arcInfo;
             IndexX = indexX;
             CountX = countX;
-            Radius = radius;
             RebarType = rebarType;
         }
     }

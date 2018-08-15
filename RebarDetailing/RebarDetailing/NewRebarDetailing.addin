@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RevitAddIns>
+  <!--<AddIn Type="Command">
+    <Text>Command RebarDetailing</Text>
+    <Description>Some description for RebarDetailing</Description>
+    <Assembly>RebarDetailing.dll</Assembly>
+    <FullClassName>RebarDetailing.Command</FullClassName>
+    <ClientId>3aa38dd0-cce4-4543-98c4-bd6936f72c71</ClientId>
+    <VendorId>com.typepad.thebuildingcoder</VendorId>
+    <VendorDescription>The Building Coder, http://thebuildingcoder.typepad.com</VendorDescription>
+  </AddIn>-->
+  <AddIn Type="Application">
+    <Name>New RebarDetailing</Name>
+    <Assembly>NewRebarDetailing\NewRebarDetailing.dll</Assembly>
+    <FullClassName>RebarDetailing.App</FullClassName>
+    <ClientId>fefe2a91-3ece-44d5-b88c-619298dcdb4a</ClientId>
+    <VendorId>Huỳnh Thiện Tài</VendorId>
+    <VendorDescription>Huỳnh Thiện Tài, http://vietbimcoder.com</VendorDescription>
+  </AddIn>
+</RevitAddIns>

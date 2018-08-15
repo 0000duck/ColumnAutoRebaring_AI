@@ -59,8 +59,11 @@
     <Compile Include="Geometry\GeomUtil.cs" />
     <Compile Include="Geometry\LineEquation.cs" />
     <Compile Include="Geometry\SystemEquation2Hidden.cs" />
+    <Compile Include="ProjectData\Dao\AssemblyInstanceInfoCentrifugalDao.cs" />
     <Compile Include="ProjectData\Dao\AssemblyInstanceInfoDao.cs" />
     <Compile Include="ProjectData\Dao\RebarInfoDao.cs" />
+    <Compile Include="ProjectData\EF\ArcInfo.cs" />
+    <Compile Include="ProjectData\EF\AssemblyInstanceCentrifugalInfo.cs" />
     <Compile Include="ProjectData\EF\AssemblyInstanceInfo.cs" />
     <Compile Include="ProjectData\EF\RebarInfo.cs" />
     <Compile Include="WPF\EF\SingleWPF.cs" />
@@ -78,6 +81,7 @@
     <Compile Include="WPF\InputViewCircleRebar.xaml.cs">
       <DependentUpon>InputViewCircleRebar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WPF\Property\Button\ViewCircleRebarOkClicked.cs" />
     <Compile Include="WPF\Property\Button\CentrifugalOkClicked.cs" />
     <Compile Include="WPF\Property\Button\OkClicked.cs" />
   </ItemGroup>

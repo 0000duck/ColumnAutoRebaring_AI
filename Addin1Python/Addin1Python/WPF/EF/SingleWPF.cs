@@ -17,7 +17,7 @@ namespace Addin1Python
     public class SingleWPF : INotifyPropertyChanged
     {
         #region Variables
-        private string prefix = "18Z";
+        private string prefix = "18G";
         private string layer = "T2L1";
         private RebarBarType selectedRebarType;
         private int developMultiply = 40;
@@ -25,7 +25,7 @@ namespace Addin1Python
         private bool isOtherwiseClock;
         private double spacingMM = 150;
         private double angleDeg = 360;
-        private string viewName = "18E-SSL02-2-00";
+        private string viewName = "18G-SSL00-0";
         #endregion
 
         #region Properties

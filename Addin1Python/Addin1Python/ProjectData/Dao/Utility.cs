@@ -26,7 +26,12 @@ namespace Addin1Python
             Singleton.Instance.Worksets.Add(ws);
             return ws;
         }
-
+        public static View CreateView()
+        {
+            View view = Singleton.Instance.Document.GetElement(ElementTransformUtils.CopyElement(Singleton.Instance.Document, Singleton.Instance.SelectedPlanView.Id, XYZ.BasisZ).First()) as View;
+            view.Name = $"{Singleton.Instance.SelectedPlanView.Name}-{SingleWPF.Instance.Layer}";
+            return view;
+        }
         public static void CreateRebarDetail(Reference rf)
         {
             Rebar rb = Singleton.Instance.Document.GetElement(rf) as Rebar;
@@ -583,8 +588,9 @@ namespace Addin1Python
             return Rebar.CreateFromCurves(Singleton.Instance.Document, RebarStyle.Standard, SingleWPF.Instance.SelectedRebarType, null, null, Singleton.Instance.SelectedElement,
                 XYZ.BasisZ, arcs.Cast<Curve>().ToList(), RebarHookOrientation.Left, RebarHookOrientation.Right, true, true);
         }
-        public static List<Rebar> CreateCentrifugalRebar(Rebar rb, CircleEquation ce)
+        public static void CreateCentrifugalRebar(Rebar rb, CircleEquation ce)
         {
+            Singleton.Instance.CentrifugalRebarsList.Add(new List<Rebar>());
             int sum = ce.Number;
             List<int> nums = new List<int>();
             while (sum > 200)
@@ -598,10 +604,49 @@ namespace Addin1Python
             {
                 var res = RadialArray.ArrayElementWithoutAssociation(Singleton.Instance.Document, Singleton.Instance.ActiveView, rb.Id, num,
                     Line.CreateBound(Singleton.Instance.SelectedXYZ, Singleton.Instance.SelectedXYZ + XYZ.BasisZ), ce.Angle, ArrayAnchorMember.Second);
+
+                int lastId = res.Last().IntegerValue;
+                Singleton.Instance.CentrifugalRebarsList.Last().AddRange(res.Where(x => x.IntegerValue != lastId).Select(x => Singleton.Instance.Document.GetElement(x) as Rebar).ToList());
                 rb = Singleton.Instance.Document.GetElement(res.Last()) as Rebar;
             }
-            
-            return null;
+            Singleton.Instance.CentrifugalRebarsList.Last().Add(rb);
+            Singleton.Instance.CentrifugalRebarsList.Last().ForEach(x => x.LookupParameter("SoLuong").Set(sum));
+        }
+        public static TextNote CreateTextNote(View view, AssemblyInstance assemIns,ArcInfo arcInfo)
+        {
+            List<Rebar> rebars = assemIns.GetMemberIds().Select(x => Singleton.Instance.Document.GetElement(x)).Cast<Rebar>().ToList();
+            string index1 = rebars.First().LookupParameter("Rebar Number").AsString();
+            string index2 = rebars.Last().LookupParameter("Rebar Number").AsString();
+            double len1 = Math.Round(GeomUtil.feet2Milimeter(rebars.First().LookupParameter("Bar Length").AsDouble())/5,0)*5;
+            double len2 = Math.Round(GeomUtil.feet2Milimeter(rebars.Last().LookupParameter("Bar Length").AsDouble())/5,0)*5;
+            string type = Singleton.Instance.Document.GetElement(rebars.First().GetTypeId()).Name;
+
+            string combine = $"({index1}-{index2}) {rebars.Count} {type}/{len1}~{len2}";
+            XYZ vec = arcInfo.Direction;
+            XYZ vec2 = XYZ.BasisZ.CrossProduct(vec) * GeomUtil.milimeter2Feet(350);
+            XYZ midpnt = arcInfo.MidPoint + vec2;
+
+            double rad = vec.Y < 0 ? -vec.AngleTo(XYZ.BasisX) : vec.AngleTo(XYZ.BasisX);
+            TextNote textNote = TextNote.Create(Singleton.Instance.Document, view.Id, midpnt, combine, Singleton.Instance.TextNoteType.Id);
+            Singleton.Instance.Document.Regenerate();
+            ElementTransformUtils.RotateElement(Singleton.Instance.Document, textNote.Id, Line.CreateBound(midpnt, midpnt + XYZ.BasisZ), rad);
+            return textNote;
+        }
+        public static Group CreateGroup(View view, ArcInfo arcInfo)
+        {
+            XYZ vec = arcInfo.DirectionGroupPoint;
+            XYZ midpnt = arcInfo.PlaceGroupPoint;
+            Group group1 = Singleton.Instance.Document.Create.PlaceGroup(midpnt, Singleton.Instance.GroupType);
+
+            double rad = vec.Y < 0 ? -vec.AngleTo(XYZ.BasisX) : vec.AngleTo(XYZ.BasisX);
+            rad = Math.Abs(rad) > Math.PI/2 ? rad + Math.PI : rad;
+            ElementTransformUtils.RotateElement(Singleton.Instance.Document, group1.Id, Line.CreateBound(midpnt, midpnt + XYZ.BasisZ), rad);
+            CopyPasteOptions options = new CopyPasteOptions();
+            Group group2 = ElementTransformUtils.CopyElements(Singleton.Instance.ActiveView, new List<ElementId> { group1.Id }, view, Transform.Identity, options).Select(x => Singleton.Instance.Document.GetElement(x)).First() as Group;
+
+            Singleton.Instance.Document.Delete(group1.Id);
+            //group.ovwr
+            return group2;
         }
     }
 }

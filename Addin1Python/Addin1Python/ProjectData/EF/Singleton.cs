@@ -35,6 +35,10 @@ namespace Addin1Python
         private InputCentrifugalForm inputCentrifugalForm;
         private List<Category> categories;
         private View selectedPlanView;
+        private List<AssemblyInstance> assemblyInstances;
+        private InputViewCircleRebar inputViewCircleRebar;
+        private TextNoteType textNoteType;
+        private GroupType groupType;
         #endregion
 
         #region Properties
@@ -43,7 +47,10 @@ namespace Addin1Python
         public UIApplication UIApplication { get; set; }
         public Element SelectedRebarTagType { get; set; }
         public List<RebarInfo> CircleRebarInfos { get; set; } = new List<RebarInfo>();
+        public List<List<Rebar>> CentrifugalRebarsList { get; set; } = new List<List<Rebar>>();
+        public List<AssemblyInstanceCentrifugalInfo> AssemblyInstanceCentrifugalInfos { get; set; } = new List<AssemblyInstanceCentrifugalInfo>();
         public List<AssemblyInstanceInfo> AssemblyInstanceInfos { get; set; } = new List<AssemblyInstanceInfo>();
+        public List<ArcInfo> ArcInfos { get; set; } = new List<ArcInfo>();
         public XYZ SelectedXYZ
         {
             get
@@ -247,6 +254,48 @@ namespace Addin1Python
                     }
                 }
                 return selectedPlanView;
+            }
+        }
+        public List<AssemblyInstance> AssemblyInstances
+        {
+            get
+            {
+                if (assemblyInstances == null)
+                {
+                    assemblyInstances = new FilteredElementCollector(Document).OfClass(typeof(AssemblyInstance)).
+                        Cast<AssemblyInstance>().Where(x => x.LookupParameter("Workset").AsInteger() == Utility.GetWorkset().Id.IntegerValue).ToList();
+                }
+                return assemblyInstances;
+            }
+        }
+        public InputViewCircleRebar InputViewCircleRebar
+        {
+            get
+            {
+                if (inputViewCircleRebar == null) inputViewCircleRebar = new InputViewCircleRebar();
+                return inputViewCircleRebar;
+            }
+        }
+        public TextNoteType TextNoteType
+        {
+            get
+            {
+                if (textNoteType == null)
+                {
+                    textNoteType = new FilteredElementCollector(Document).OfClass(typeof(TextNoteType)).Where(x => x.Name == "1.5mm Arial").Cast<TextNoteType>().First();
+                }
+                return textNoteType;
+            }
+        }
+        public GroupType GroupType
+        {
+            get
+            {
+                if (groupType == null)
+                {
+                    groupType = new FilteredElementCollector(Document).OfClass(typeof(GroupType)).Where(x => x.Name == "18E-NoiThep_Ln").Cast<GroupType>().First();
+                }
+                return groupType;
             }
         }
         #endregion

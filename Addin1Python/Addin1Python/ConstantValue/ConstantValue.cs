@@ -12,9 +12,9 @@ namespace Addin1Python
         public static string RebarTemplateName = "HB_MB_ThepSanMongCauthangRamp (1/100)";
         public static string Library = "Library";
 
-        public static int SelectedIndex = 1794536;
+        public static int SelectedIndex = 418821;
         public static string SeletedRebarShape = "TC_Arc";
 
-        public static XYZ SelectedXYZ = new XYZ(577.742794242221, 1379.77900850647, 14.7637795275591);
+        public static XYZ SelectedXYZ = new XYZ(575.110526845355, 1501.69476477745, 14.7637795275591);
     }
 }

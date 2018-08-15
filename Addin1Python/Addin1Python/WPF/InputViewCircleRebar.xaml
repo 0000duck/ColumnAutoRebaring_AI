@@ -22,7 +22,7 @@
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <Button Content="OK" Width="40" Margin="210 0 10 0"
-                    local:BaseAttachedProperty.OKClickedProperty="True"/>
+                    local:BaseAttachedProperty.ViewCircleRebarOkClickedProperty="True"/>
         </StackPanel>
     </StackPanel>
 </Window>

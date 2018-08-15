@@ -66,9 +66,13 @@ namespace Addin1Python
         {
             return new UV(CenterUV.U + Radius * Math.Cos(angle),CenterUV.V +Radius * Math.Sin(angle));
         }
-        public Arc GetArc(double startAngle, double plusAngle)
+        public ArcInfo GetArcInfo(double startAngle, double endAngle)
         {
-            return Arc.Create(GetEndPoint(startAngle), GetEndPoint(startAngle, plusAngle), GetEndPoint(startAngle, plusAngle / 2));
+            return new ArcInfo(this, startAngle, endAngle);
+        }
+        public ArcInfo GetArcInfo2(double startAngle, double plusAngle)
+        {
+            return GetArcInfo(startAngle, startAngle+ plusAngle);
         }
         public XYZ GetEndPoint(double startAngle, double plusAngle)
         {
@@ -78,10 +82,10 @@ namespace Addin1Python
         {
             return GetEndPointUV(startAngle + plusAngle);
         }
-        public Arc GetArc(double startAngle, double length, bool isOtherwiseClock)
+        public ArcInfo GetArcInfo(double startAngle, double length, bool isOtherwiseClock)
         {
             double plusAngle = isOtherwiseClock ? ConvertLength2Angle(length) : -ConvertLength2Angle(length);
-            return GetArc(startAngle, plusAngle);
+            return GetArcInfo2(startAngle, plusAngle);
         }
         public XYZ GetEndPoint(double startAngle, double length, bool isOtherwiseClock)
         {
@@ -93,10 +97,10 @@ namespace Addin1Python
             return GetEndPointUV(startAngle, plusAngle);
         }
 
-        public Arc GetArc(double firstInitAngle, double distance1, double plusLength, bool isOtherwiseClock)
+        public ArcInfo GetArcInfo(double firstInitAngle, double distance1, double plusLength, bool isOtherwiseClock)
         {
             double startAngle = firstInitAngle + (isOtherwiseClock ? ConvertLength2Angle(distance1) : -ConvertLength2Angle(distance1));
-            return GetArc(startAngle, plusLength, isOtherwiseClock);
+            return GetArcInfo(startAngle, plusLength, isOtherwiseClock);
         }
         public void CalculateDistancesList(double targetLength, bool isOtherwiseClock)
         {
@@ -105,25 +109,32 @@ namespace Addin1Python
             if (GeomUtil.IsSmallerOrEqual(num, 1))
             {
                 double angle1 = (ConvertLength2Angle(SingleWPF.Instance.SelectedBarDiameter) * SingleWPF.Instance.DevelopMultiply);
-                StandardArcs.Add(new List<Arc> { GetArc(Math.PI, -Math.PI), GetArc(0, -(Math.PI + angle1)) });
+                Singleton.Instance.ArcInfos.Add(GetArcInfo2(Math.PI, -Math.PI));
+                Singleton.Instance.ArcInfos.Last().AddArc(GetArcInfo2(0, -(Math.PI + angle1)));
+                //StandardArcs.Add(new List<Arc> { GetArc(Math.PI, -Math.PI), GetArc(0, -(Math.PI + angle1)) });
                 return;
             }
             double num2 = Perimeter / targetLength;
             if (GeomUtil.IsSmallerOrEqual(num2, 1))
             {
                 double angle1 = (ConvertLength2Angle(targetLength) - Math.PI * 2) / 2;
-                StandardArcs.Add(new List<Arc> { GetArc(Math.PI + angle1, -Math.PI), GetArc(angle1, -(Math.PI + angle1*2))});
+                Singleton.Instance.ArcInfos.Add(GetArcInfo2(Math.PI + angle1, -Math.PI));
+                Singleton.Instance.ArcInfos.Last().AddArc(GetArcInfo2(angle1, -(Math.PI + angle1 * 2)));
+                //StandardArcs.Add(new List<Arc> { GetArc(Math.PI + angle1, -Math.PI), GetArc(angle1, -(Math.PI + angle1*2))});
                 double angle2 = (ConvertLength2Angle(SingleWPF.Instance.SelectedBarDiameter * SingleWPF.Instance.DevelopMultiply));
-                StandardArcs.Add(new List<Arc> { GetArc(Math.PI + angle2, -angle2 * 2) });
+                Singleton.Instance.ArcInfos.Add(GetArcInfo2(Math.PI + angle2, -angle2 * 2));
+                //StandardArcs.Add(new List<Arc> { GetArc(Math.PI + angle2, -angle2 * 2) });
                 return;
             }
 
             num = Math.Floor(num);
             for (int i = 0; i < num; i++)
             {
-                StandardArcs.Add(new List<Arc> { GetArc(Math.PI, i * trueLength, targetLength, isOtherwiseClock) });
+                Singleton.Instance.ArcInfos.Add(GetArcInfo(Math.PI, i * trueLength, targetLength, isOtherwiseClock));
+                //StandardArcs.Add(new List<Arc> { GetArc(Math.PI, i * trueLength, targetLength, isOtherwiseClock) });
             }
-            StandardArcs.Add(new List<Arc> { GetArc(Math.PI, num * trueLength, perimeter - num * trueLength + SingleWPF.Instance.SelectedBarDiameter * SingleWPF.Instance.DevelopMultiply, isOtherwiseClock) });
+            Singleton.Instance.ArcInfos.Add(GetArcInfo(Math.PI, num * trueLength, perimeter - num * trueLength + SingleWPF.Instance.SelectedBarDiameter * SingleWPF.Instance.DevelopMultiply, isOtherwiseClock));
+            //StandardArcs.Add(new List<Arc> { GetArc(Math.PI, num * trueLength, perimeter - num * trueLength + SingleWPF.Instance.SelectedBarDiameter * SingleWPF.Instance.DevelopMultiply, isOtherwiseClock) });
         }
         public void CalculateNumberWithAngle(double spac, double sumAngle, bool isOtherwiseClock)
         {

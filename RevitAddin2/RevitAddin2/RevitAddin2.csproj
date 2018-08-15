@@ -30,12 +30,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="2019_RevitAPI">
-      <HintPath>..\..\..\..\2. Reference\Revit 2019 dll\2019_RevitAPI.dll</HintPath>
+    <Reference Include="RevitAPI">
+      <HintPath>..\..\RevitAPI.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="2019_RevitAPIUI">
-      <HintPath>..\..\..\..\2. Reference\Revit 2019 dll\2019_RevitAPIUI.dll</HintPath>
+    <Reference Include="RevitAPIUI">
+      <HintPath>..\..\RevitAPIUI.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />

@@ -84,13 +84,14 @@ namespace Addin1Python
                 CircleEquation ce = new CircleEquation(Singleton.Instance.SelectedXYZ, length, point.Z);
                 ce.CalculateDistancesList(GeomUtil.milimeter2Feet(11700), SingleWPF.Instance.IsOtherwiseClock);
 
-                int countX = ce.StandardArcs.Count;
-                RebarType rebarType = ce.StandardArcs[0].Count == 1 ? RebarType.Type1 : RebarType.Type2;
-                for (int i = 0; i < ce.StandardArcs.Count; i++)
+                List<ArcInfo> arcInfos = Singleton.Instance.ArcInfos.Where(x => x.CircleEquation.Radius == ce.Radius).ToList();
+                int countX = arcInfos.Count;
+                RebarType rebarType = Singleton.Instance.ArcInfos[0].Arcs.Count == 1 ? RebarType.Type1 : RebarType.Type2;
+                for (int i = 0; i < arcInfos.Count; i++)
                 {
-                    Rebar rebar = Utility.CreateCircleRebar(ce.StandardArcs[i]);
+                    Rebar rebar = Utility.CreateCircleRebar(arcInfos[i].Arcs);
                     rebar.LookupParameter("Workset").Set(Utility.GetWorkset().Id.IntegerValue);
-                    Singleton.Instance.CircleRebarInfos.Add(new RebarInfo(rebar, i, countX, ce.Radius, rebarType));
+                    Singleton.Instance.CircleRebarInfos.Add(new RebarInfo(rebar, arcInfos[i], i, countX, rebarType));
                 }
             }
 
@@ -112,7 +113,7 @@ namespace Addin1Python
             SingleWPF.Instance = new SingleWPF();
 
             Singleton.Instance.UIApplication = commandData.Application;
-            Singleton.Instance.InputForm.ShowDialog();
+            Singleton.Instance.InputViewCircleRebar.ShowDialog();
             if (!SingleWPF.Instance.IsFormClosedOk) return Result.Succeeded;
 
             Singleton.Instance.Transaction.Start();
@@ -120,40 +121,33 @@ namespace Addin1Python
             Singleton.Instance.ActiveView.SketchPlane = Singleton.Instance.ActiveSketchPlane;
             Singleton.Instance.ActiveView.HideActiveWorkPlane();
 
-            List<XYZ> points = new List<XYZ>();
-            while (true)
+            View view = Utility.CreateView();
+            view.SetWorksetVisibility(Utility.GetWorkset().Id, WorksetVisibility.Visible);
+            for (int i = 0; i < Singleton.Instance.AssemblyInstances.Count; i++)
             {
-                try
+                List<Rebar> rebars = Singleton.Instance.AssemblyInstances[i].GetMemberIds().Select(x => Singleton.Instance.Document.GetElement(x) as Rebar).ToList();
+                int index = int.Parse(rebars.First().LookupParameter("Comments").AsString().Split('_').Last());
+                string[] arcInfos = rebars[index].LookupParameter("Comments").AsString().Split('(', ')')[1].Split('_');
+                List<double> arcInputs = new List<double>();
+                for (int j = 0; j < arcInfos.Length-1; j++)
                 {
-                    points.Add(Singleton.Instance.Selection.PickPoint());
+                    arcInputs.Add(double.Parse(arcInfos[j]));
                 }
-                catch (Autodesk.Revit.Exceptions.OperationCanceledException)
+                RebarType rebarType = (RebarType) Enum.Parse(typeof(RebarType), arcInfos.Last());
+                double offset = 0;
+                if (i % 2 == 1)
                 {
-                    break;
+                    offset = GeomUtil.milimeter2Feet(200);
                 }
+                if (i % 2 == 0 && i == Singleton.Instance.AssemblyInstances.Count - 1)
+                {
+                    offset = GeomUtil.milimeter2Feet(-200);
+                }
+                ArcInfo arcInfo = new ArcInfo(arcInputs[0], arcInputs[1], arcInputs[2], offset, rebarType);
+                arcInfo.Curves.ForEach(x=> Singleton.Instance.Document.Create.NewDetailCurve(view,x));
+                Utility.CreateTextNote(view, Singleton.Instance.AssemblyInstances[i], arcInfo);
+                if (rebarType== RebarType.Type1) Utility.CreateGroup(view, arcInfo);
             }
-
-            foreach (XYZ point in points)
-            {
-                double length = GeomUtil.GetLength(new XYZ(point.X, 0, 0), new XYZ(Singleton.Instance.SelectedXYZ.X, 0, 0));
-
-                CircleEquation ce = new CircleEquation(Singleton.Instance.SelectedXYZ, length, point.Z);
-                ce.CalculateDistancesList(GeomUtil.milimeter2Feet(11700), SingleWPF.Instance.IsOtherwiseClock);
-
-                int countX = ce.StandardArcs.Count;
-                RebarType rebarType = ce.StandardArcs[0].Count == 1 ? RebarType.Type1 : RebarType.Type2;
-                for (int i = 0; i < ce.StandardArcs.Count; i++)
-                {
-                    Rebar rebar = Utility.CreateCircleRebar(ce.StandardArcs[i]);
-                    rebar.LookupParameter("Workset").Set(Utility.GetWorkset().Id.IntegerValue);
-                    Singleton.Instance.CircleRebarInfos.Add(new RebarInfo(rebar, i, countX, ce.Radius, rebarType));
-                }
-            }
-
-            RebarInfoDao.Categozie();
-            RebarInfoDao.ShowValue();
-            Singleton.Instance.Document.Regenerate();
-            AssemblyInstanceInfoDao.CreateAssemblyInstances();
 
             Singleton.Instance.Transaction.Commit();
             return Result.Succeeded;
@@ -190,13 +184,47 @@ namespace Addin1Python
             }
             XYZ point = Singleton.Instance.Selection.PickPoint();
 
-            double length = GeomUtil.GetLength(new XYZ(point.X, 0, 0), new XYZ(Singleton.Instance.SelectedXYZ.X, 0, 0));
+            double length = GeomUtil.GetLength(new XYZ(point.X, point.Y, 0), new XYZ(Singleton.Instance.SelectedXYZ.X, Singleton.Instance.SelectedXYZ.Y, 0));
 
             CircleEquation ce = new CircleEquation(Singleton.Instance.SelectedXYZ, length, point.Z);
             ce.CalculateNumberWithAngle(SingleWPF.Instance.Spacing, SingleWPF.Instance.Angle, false);
 
             rebars.ForEach(x => Utility.CreateCentrifugalRebar(x, ce));
+            AssemblyInstanceInfoCentrifugalDao.CreateAssemblyInstanceInfoCentrifugals();
 
+            Singleton.Instance.Transaction.Commit();
+            return Result.Succeeded;
+        }
+    }
+    [Transaction(TransactionMode.Manual)]
+    public class SelectRebars : IExternalCommand
+    {
+        public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
+        {
+            Singleton.Instance = new Singleton();
+            SingleWPF.Instance = new SingleWPF();
+
+            Singleton.Instance.UIApplication = commandData.Application;
+            Singleton.Instance.Transaction.Start();
+            SingleWPF.Instance.Prefix = "18E";
+            SingleWPF.Instance.Layer = "T1";
+
+            List<Rebar> rebars = Singleton.Instance.Selection.PickElementsByRectangle(new RebarSelectionFilter()).Cast<Rebar>().ToList();
+            List<Rebar> filRebars = new List<Rebar>();
+            List<string> types = new List<string> { "Ø20 : Shape TC_L_01", "T20 : Shape TC_L_01" };
+            foreach (Rebar rb in rebars)
+            {
+                if (rb.LookupParameter("Workset").AsInteger() != Utility.GetWorkset().Id.IntegerValue) continue;
+                foreach (string type in types)
+                {
+                    if (rb.Name == type)
+                    {
+                        filRebars.Add(rb);
+                    }
+                }
+            }
+
+            Singleton.Instance.Selection.SetElementIds(filRebars.Select(x => x.Id).ToList());
             Singleton.Instance.Transaction.Commit();
             return Result.Succeeded;
         }

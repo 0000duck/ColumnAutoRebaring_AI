@@ -33,10 +33,10 @@ namespace Addin1Python
                 foreach (RebarInfo rebarInfo in rebarInfos)
                 {
                     rebarInfo.CountY = rebarInfos.Count/rebarInfo.CountX;
-                    if (rebarInfo.Radius != radius)
+                    if (rebarInfo.ArcInfo.CircleEquation.Radius != radius)
                     {
                         indexY++;
-                        radius = rebarInfo.Radius;
+                        radius = rebarInfo.ArcInfo.CircleEquation.Radius;
                         
                     }
                     rebarInfo.IndexY = indexY;
@@ -47,7 +47,9 @@ namespace Addin1Python
         {
             foreach (RebarInfo rebarInfo in Singleton.Instance.CircleRebarInfos)
             {
-                string value = $"R:{GeomUtil.feet2Milimeter(rebarInfo.Radius):0}-X:{rebarInfo.IndexX}_{rebarInfo.CountX}-Y:{rebarInfo.IndexY}_{rebarInfo.CountY}";
+                ArcInfo arcInfo = rebarInfo.ArcInfo;
+                
+                string value = $"R:({arcInfo.CircleEquation.Radius}_{arcInfo.StartAngle}_{arcInfo.EndAngle}_{arcInfo.RebarType})-X:{rebarInfo.IndexX}_{rebarInfo.CountX}-Y:{rebarInfo.IndexY}_{rebarInfo.CountY}_{Math.Ceiling(((double)rebarInfo.CountY)/2)-1}";
                     rebarInfo.Rebar.LookupParameter("Comments").Set(value);
             }
         }
