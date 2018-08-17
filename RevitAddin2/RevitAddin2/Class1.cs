@@ -112,7 +112,7 @@ namespace RevitAddin2
             List<Rebar> rebars = assIns.GetMemberIds().Select(x => Singleton.Instance.Document.GetElement(x)).Cast<Rebar>().ToList();
             rebars.Sort(new RebarSorter());
 
-            Curve curve = rebars[1].GetCenterlineCurves(true, false, false, MultiplanarOption.IncludeOnlyPlanarCurves, 0).First();
+            Curve curve = rebars[0].GetCenterlineCurves(true, false, false, MultiplanarOption.IncludeOnlyPlanarCurves, 0).First();
 
             XYZ vec = curve.GetEndPoint(1) - curve.GetEndPoint(0);
             XYZ midpnt = (curve.GetEndPoint(1) + curve.GetEndPoint(0)) / 2;

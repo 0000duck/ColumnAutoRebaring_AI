@@ -8,12 +8,15 @@
              SizeToContent="WidthAndHeight" DataContext="{x:Static local:SingleWPF.Instance}">
     <StackPanel Margin="10" Orientation="Vertical">
         <StackPanel Orientation="Horizontal">
-            <Label Content="Prefix:" Width="70" VerticalAlignment="Center"></Label>
-            <TextBox Width="40" Margin="10 0 0 0" VerticalAlignment="Center"
+            <Label Content="Prefix:" Width="45" VerticalAlignment="Center"></Label>
+            <TextBox Width="40" Margin="5 0 0 0" VerticalAlignment="Center"
                      Text="{Binding Prefix}"/>
-            <Label Content="Layer:" Width="70" Margin="10 0 0 0" VerticalAlignment="Center"></Label>
-            <TextBox Width="40" Margin="10 0 10 0" VerticalAlignment="Center"
+            <Label Content="Layer:" Width="45" Margin="10 0 0 0" VerticalAlignment="Center"></Label>
+            <TextBox Width="40" Margin="5 0 10 0" VerticalAlignment="Center"
                      Text="{Binding Layer}"/>
+            <Label Content="Type:" Width="45" Margin="10 0 0 0" VerticalAlignment="Center"></Label>
+            <TextBox Width="80" Margin="5 0 10 0" VerticalAlignment="Center"
+                     Text="{Binding Type}"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <Label Content="ViewName:" Width="70" VerticalAlignment="Center"></Label>

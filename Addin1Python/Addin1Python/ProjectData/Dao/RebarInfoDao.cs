@@ -11,23 +11,22 @@ namespace Addin1Python
     {
         public static void Categozie()
         {
-            List<List<RebarInfo>> rebarInfosList = new List<List<RebarInfo>>();
             int countX = -1; RebarType rebarType = RebarType.Type1;
             foreach (RebarInfo rebarInfo in Singleton.Instance.CircleRebarInfos)
             {
                 if (countX != rebarInfo.CountX || rebarType != rebarInfo.RebarType)
                 {
-                    rebarInfosList.Add(new List<RebarInfo> { rebarInfo });
+                    Singleton.Instance.CircleRebarInfosList.Add(new List<RebarInfo> { rebarInfo });
                     countX = rebarInfo.CountX;
                     rebarType = rebarInfo.RebarType;
                 }
                 else
                 {
-                    rebarInfosList.Last().Add(rebarInfo);
+                    Singleton.Instance.CircleRebarInfosList.Last().Add(rebarInfo);
                 }
             }
 
-            foreach (List<RebarInfo> rebarInfos in rebarInfosList)
+            foreach (List<RebarInfo> rebarInfos in Singleton.Instance.CircleRebarInfosList)
             {
                 int indexY = -1; double radius = -1;
                 foreach (RebarInfo rebarInfo in rebarInfos)

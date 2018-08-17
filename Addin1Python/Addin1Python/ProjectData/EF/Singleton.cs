@@ -47,9 +47,11 @@ namespace Addin1Python
         public UIApplication UIApplication { get; set; }
         public Element SelectedRebarTagType { get; set; }
         public List<RebarInfo> CircleRebarInfos { get; set; } = new List<RebarInfo>();
+        public List<List<RebarInfo>> CircleRebarInfosList { get; set; } = new List<List<RebarInfo>>();
         public List<List<Rebar>> CentrifugalRebarsList { get; set; } = new List<List<Rebar>>();
         public List<AssemblyInstanceCentrifugalInfo> AssemblyInstanceCentrifugalInfos { get; set; } = new List<AssemblyInstanceCentrifugalInfo>();
         public List<AssemblyInstanceInfo> AssemblyInstanceInfos { get; set; } = new List<AssemblyInstanceInfo>();
+        public List<GroupInfo> GroupInfos { get; set; } = new List<GroupInfo>();
         public List<ArcInfo> ArcInfos { get; set; } = new List<ArcInfo>();
         public XYZ SelectedXYZ
         {

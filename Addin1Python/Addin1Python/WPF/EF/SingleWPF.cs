@@ -17,15 +17,16 @@ namespace Addin1Python
     public class SingleWPF : INotifyPropertyChanged
     {
         #region Variables
-        private string prefix = "18G";
-        private string layer = "T2L1";
+        private string prefix = "18E";
+        private string layer = "D1";
+        private string type = "ThepSan";
         private RebarBarType selectedRebarType;
         private int developMultiply = 40;
         private List<RebarBarType> rebarBarTypes;
         private bool isOtherwiseClock;
         private double spacingMM = 150;
         private double angleDeg = 360;
-        private string viewName = "18G-SSL00-0";
+        private string viewName = "18E-SSL02-CW";
         #endregion
 
         #region Properties
@@ -54,6 +55,19 @@ namespace Addin1Python
             {
                 if (layer == value) return;
                 layer = value;
+                OnPropertyChanged();
+            }
+        }
+        public string Type
+        {
+            get
+            {
+                return type;
+            }
+            set
+            {
+                if (type == value) return;
+                type = value;
                 OnPropertyChanged();
             }
         }

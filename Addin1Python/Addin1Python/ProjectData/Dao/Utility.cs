@@ -15,13 +15,13 @@ namespace Addin1Python
     {
         public static Workset GetWorkset(string layer)
         {
-            return Singleton.Instance.Worksets.Where(x => x.Name == $"{SingleWPF.Instance.Prefix}-ThepSan{layer}").First();
+            return Singleton.Instance.Worksets.Where(x => x.Name == $"{SingleWPF.Instance.Prefix}-{SingleWPF.Instance.Type}{layer}").First();
         }
         public static Workset GetWorkset()
         {
-            var res = Singleton.Instance.Worksets.Where(x => x.Name == $"{SingleWPF.Instance.Prefix}-ThepSan{SingleWPF.Instance.Layer}");
+            var res = Singleton.Instance.Worksets.Where(x => x.Name == $"{SingleWPF.Instance.Prefix}-{SingleWPF.Instance.Type}{SingleWPF.Instance.Layer}");
             if (res.Count() != 0) return res.First();
-            Workset ws= Workset.Create(Singleton.Instance.Document, $"{SingleWPF.Instance.Prefix}-ThepSan{SingleWPF.Instance.Layer}");
+            Workset ws= Workset.Create(Singleton.Instance.Document, $"{SingleWPF.Instance.Prefix}-{SingleWPF.Instance.Type}{SingleWPF.Instance.Layer}");
             Singleton.Instance.WorksetDefaultVisibilitySettings.SetWorksetVisibility(ws.Id, false);
             Singleton.Instance.Worksets.Add(ws);
             return ws;
@@ -585,6 +585,9 @@ namespace Addin1Python
         }
         public static Rebar CreateCircleRebar(List<Arc> arcs)
         {
+            double len = 0;
+            arcs.ForEach(x => len += x.Length);
+            len = GeomUtil.feet2Milimeter(len);
             return Rebar.CreateFromCurves(Singleton.Instance.Document, RebarStyle.Standard, SingleWPF.Instance.SelectedRebarType, null, null, Singleton.Instance.SelectedElement,
                 XYZ.BasisZ, arcs.Cast<Curve>().ToList(), RebarHookOrientation.Left, RebarHookOrientation.Right, true, true);
         }
