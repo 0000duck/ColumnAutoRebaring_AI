@@ -33,7 +33,7 @@ namespace Addin1Python
                 if (v.Name != $"{SingleWPF.Instance.Prefix}-{Singleton.Instance.Level}-DV") continue;
                 viewPlan = v; break;
             }
-
+            
             List<string> layers = new List<string> { "B1", "B2", "BE2", "T1", "T2", "TE2" };
             foreach (string layer in layers)
             {
@@ -90,6 +90,7 @@ namespace Addin1Python
                 for (int i = 0; i < arcInfos.Count; i++)
                 {
                     Rebar rebar = Utility.CreateCircleRebar(arcInfos[i].Arcs);
+                    Singleton.Instance.Document.Regenerate();
                     rebar.LookupParameter("Workset").Set(Utility.GetWorkset().Id.IntegerValue);
                     Singleton.Instance.CircleRebarInfos.Add(new RebarInfo(rebar, arcInfos[i], i, countX, rebarType));
                 }
@@ -97,7 +98,9 @@ namespace Addin1Python
 
             RebarInfoDao.Categozie();
             RebarInfoDao.ShowValue();
-            GroupInfoDao.CreateGroupInfos();
+            RebarInfoDao.RefreshRebars();
+            Singleton.Instance.Document.Regenerate();
+            AssemblyInstanceInfoDao.CreateAssemblyInstances();
 
             Singleton.Instance.Transaction.Commit();
             return Result.Succeeded;
@@ -121,7 +124,7 @@ namespace Addin1Python
             Singleton.Instance.ActiveView.HideActiveWorkPlane();
 
             View view = Utility.CreateView();
-            view.SetWorksetVisibility(Utility.GetWorkset().Id, WorksetVisibility.Visible);
+            //view.SetWorksetVisibility(Utility.GetWorkset().Id, WorksetVisibility.Visible);
             for (int i = 0; i < Singleton.Instance.AssemblyInstances.Count; i++)
             {
                 List<Rebar> rebars = Singleton.Instance.AssemblyInstances[i].GetMemberIds().Select(x => Singleton.Instance.Document.GetElement(x) as Rebar).ToList();

@@ -1,4 +1,6 @@
-﻿using Geometry;
+﻿using Autodesk.Revit.DB;
+using Autodesk.Revit.DB.Structure;
+using Geometry;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -51,6 +53,18 @@ namespace Addin1Python
                 string value = $"R:({arcInfo.CircleEquation.Radius}_{arcInfo.StartAngle}_{arcInfo.EndAngle}_{arcInfo.RebarType})-X:{rebarInfo.IndexX}_{rebarInfo.CountX}-Y:{rebarInfo.IndexY}_{rebarInfo.CountY}_{Math.Ceiling(((double)rebarInfo.CountY)/2)-1}";
                     rebarInfo.Rebar.LookupParameter("Comments").Set(value);
             }
+        }
+        public static void RefreshRebars()
+        {
+            List<Rebar> deleteRebars = Singleton.Instance.CircleRebarInfos.Select(x => x.Rebar).ToList();
+            List<Rebar> newRebars = ElementTransformUtils.CopyElements(Singleton.Instance.ActiveView, deleteRebars.Select(x => x.Id).ToList(),
+                                        Singleton.Instance.ActiveView, Transform.Identity, new CopyPasteOptions()).Select(x=> Singleton.Instance.Document.GetElement(x)).Cast<Rebar>().ToList();
+            newRebars.ForEach(x => x.LookupParameter("Workset").Set(Utility.GetWorkset().Id.IntegerValue));
+            for (int i = 0; i < Singleton.Instance.CircleRebarInfos.Count; i++)
+            {
+                Singleton.Instance.CircleRebarInfos[i].Rebar = newRebars[i];
+            }
+            Singleton.Instance.Document.Delete(deleteRebars.Select(x => x.Id).ToList());
         }
     }
 }
