@@ -281,4 +281,39 @@ namespace Addin1Python
             return Result.Succeeded;
         }
     }
+
+    [Transaction(TransactionMode.Manual)]
+    public class CopyWorkset2Partition : IExternalCommand
+    {
+        public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
+        {
+            Singleton.Instance = new Singleton();
+            SingleWPF.Instance = new SingleWPF();
+
+            Singleton.Instance.UIApplication = commandData.Application;
+            Singleton.Instance.Transaction.Start();
+
+            List<string> names = new List<string> { "18B", "18E", "18G" };
+            foreach (Rebar rebar in Singleton.Instance.Rebars)
+            {
+                string workset = rebar.LookupParameter("Workset").AsValueString();
+
+                bool isTrue = false;
+                foreach (string name in names)
+                {
+                    if (workset.Contains(name))
+                    {
+                        isTrue = true;
+                        break;
+                    }
+                }
+
+                if (isTrue)
+                rebar.LookupParameter("Partition").Set("18B-F_CW-18E-F_CW-18G-F");
+            }
+
+            Singleton.Instance.Transaction.Commit();
+            return Result.Succeeded;
+        }
+    }
 }

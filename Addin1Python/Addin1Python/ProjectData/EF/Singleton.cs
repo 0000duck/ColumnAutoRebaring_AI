@@ -32,6 +32,7 @@ namespace Addin1Python
         private InputForm inputForm;
         private WorksetDefaultVisibilitySettings worksetDefaultVisibilitySettings;
         private List<RebarBarType> rebarTypes;
+        private List<Rebar> rebars;
         private InputCentrifugalForm inputCentrifugalForm;
         private List<Category> categories;
         private View selectedPlanView;
@@ -213,6 +214,15 @@ namespace Addin1Python
                 if (rebarTypes == null)
                     rebarTypes = new FilteredElementCollector(Document).OfClass(typeof(RebarBarType)).Cast<RebarBarType>().ToList();
                 return rebarTypes;
+            }
+        }
+        public List<Rebar> Rebars
+        {
+            get
+            {
+                if (rebars == null)
+                    rebars = new FilteredElementCollector(Document).OfClass(typeof(Rebar)).Cast<Rebar>().ToList();
+                return rebars;
             }
         }
         public InputCentrifugalForm InputCentrifugalForm
