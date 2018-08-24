@@ -42,10 +42,10 @@ namespace Project
         {
             start = start * Project.ConstantValue.milimeter2feet;
             end = end * Project.ConstantValue.milimeter2feet;
-            Rebar rb= Rebar.CreateFromCurves(PSingleton.Instance.Document, RebarStyle.Standard, PSingleton.Instance.GetRebarType(rebarName), null, null, PSingleton.Instance.Element, XYZ.BasisY,
+            Rebar rb = Rebar.CreateFromCurves(PSingleton.Instance.Document, RebarStyle.Standard, PSingleton.Instance.WPFData.SelectedRebarType, null, null, PSingleton.Instance.Element, XYZ.BasisY,
                 new List<Curve> { Line.CreateBound(new XYZ(pnt.U, pnt.V, start), new XYZ(pnt.U, pnt.V, end)) }, RebarHookOrientation.Left, RebarHookOrientation.Left, true, false);
             rb.SetUnobscuredInView(PSingleton.Instance.Document.ActiveView, true);
-            rb.LookupParameter("Comments").Set("add-in");
+            rb.LookupParameter("Comments").Set($"AllowOverLevel:{PSingleton.Instance.WPFData.AllowOverLevel}");
             rb.LookupParameter("Type").Set(type);
             rb.LookupParameter("Position").Set(position);
             return rb;
