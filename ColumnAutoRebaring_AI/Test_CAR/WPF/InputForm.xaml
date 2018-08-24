@@ -1,0 +1,24 @@
+﻿<Window x:Class="Test_CAR.InputForm"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Test_CAR"
+             mc:Ignorable="d" SizeToContent="WidthAndHeight">
+    <StackPanel Margin="10" Orientation="Vertical">
+        <StackPanel Orientation="Horizontal">
+            <CheckBox VerticalAlignment="Center" Content="Allow over level"
+                      IsChecked="{Binding AllowOverLevel}"/>
+            <ComboBox Margin="30 0 0 0" ItemsSource="{Binding RebarTypes}" Width="50"
+                      DisplayMemberPath="Name"
+                      SelectedItem="{Binding SelectedRebarType}"/>
+            <Label Content="DevMul:" Margin="10 0 0 0"/>
+            <TextBox Text="{Binding DevelopMultiply}" Margin="10 0 0 0" Width="30"
+                     HorizontalAlignment="Right" VerticalAlignment="Center"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <Button Content="OK" Width="40" Margin="0 0 10 0"
+                    local:BaseAttachedProperty.OKClickedProperty="True"/>
+        </StackPanel>
+    </StackPanel>
+</Window>

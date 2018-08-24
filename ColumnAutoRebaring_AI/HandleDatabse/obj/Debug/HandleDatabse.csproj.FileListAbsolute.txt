@@ -32,3 +32,14 @@ D:\IT\Addin\ColumnAutoRebaring_AI\RevitAddin1\HandleDatabse\obj\Debug\HandleData
 E:\Lap trinh\Revit\ColumnAutoRebaring_AI\RevitAddin1\HandleDatabse\bin\Debug\HandleDatabse.dll.config
 E:\Lap trinh\Revit\ColumnAutoRebaring_AI\RevitAddin1\HandleDatabse\bin\Debug\HandleDatabse.dll
 E:\Lap trinh\Revit\ColumnAutoRebaring_AI\RevitAddin1\HandleDatabse\obj\Debug\HandleDatabse.dll
+E:\Lap trinh\Revit\ColumnAutoRebaring_AI\ColumnAutoRebaring_AI\HandleDatabse\bin\Debug\HandleDatabse.pdb
+E:\Lap trinh\Revit\ColumnAutoRebaring_AI\ColumnAutoRebaring_AI\HandleDatabse\bin\Debug\EntityFramework.dll
+E:\Lap trinh\Revit\ColumnAutoRebaring_AI\ColumnAutoRebaring_AI\HandleDatabse\bin\Debug\EntityFramework.SqlServer.dll
+E:\Lap trinh\Revit\ColumnAutoRebaring_AI\ColumnAutoRebaring_AI\HandleDatabse\bin\Debug\EntityFramework.xml
+E:\Lap trinh\Revit\ColumnAutoRebaring_AI\ColumnAutoRebaring_AI\HandleDatabse\bin\Debug\EntityFramework.SqlServer.xml
+E:\Lap trinh\Revit\ColumnAutoRebaring_AI\ColumnAutoRebaring_AI\HandleDatabse\obj\Debug\HandleDatabse.csproj.CoreCompileInputs.cache
+E:\Lap trinh\Revit\ColumnAutoRebaring_AI\ColumnAutoRebaring_AI\HandleDatabse\obj\Debug\HandleDatabse.csproj.CopyComplete
+E:\Lap trinh\Revit\ColumnAutoRebaring_AI\ColumnAutoRebaring_AI\HandleDatabse\obj\Debug\HandleDatabse.pdb
+E:\Lap trinh\Revit\ColumnAutoRebaring_AI\ColumnAutoRebaring_AI\HandleDatabse\bin\Debug\HandleDatabse.exe.config
+E:\Lap trinh\Revit\ColumnAutoRebaring_AI\ColumnAutoRebaring_AI\HandleDatabse\bin\Debug\HandleDatabse.exe
+E:\Lap trinh\Revit\ColumnAutoRebaring_AI\ColumnAutoRebaring_AI\HandleDatabse\obj\Debug\HandleDatabse.exe
