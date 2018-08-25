@@ -26,7 +26,12 @@
                      Text="{Binding DevelopMultiply}"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
-            <CheckBox Margin="10 0 0 0" Content="OtherwiseClock"
+            <Label Content="ElemType:" Width="70" VerticalAlignment="Center"></Label>
+            <ComboBox ItemsSource="{Binding RebarBarTypes}"
+                      SelectedItem="{Binding SelectedRebarType}"
+                      DisplayMemberPath="Name"
+                      Margin="5 0 0 0" Width="45" VerticalAlignment="Center"/>
+            <CheckBox Margin="35 0 0 0" Content="OtherwiseClock" VerticalAlignment="Center"
                       IsChecked="{Binding IsOtherwiseClock}"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal">

@@ -67,7 +67,10 @@
     <Compile Include="ProjectData\EF\AssemblyInstanceCentrifugalInfo.cs" />
     <Compile Include="ProjectData\EF\GroupInfo.cs" />
     <Compile Include="ProjectData\EF\AssemblyInstanceInfo.cs" />
+    <Compile Include="ProjectData\EF\WPFData.cs" />
     <Compile Include="ProjectData\EF\RebarInfo.cs" />
+    <Compile Include="ProjectData\EF\ModelData.cs" />
+    <Compile Include="ProjectData\EF\RevitData.cs" />
     <Compile Include="WPF\EF\SingleWPF.cs" />
     <Compile Include="WPF\InputCentrifugalForm.xaml.cs">
       <DependentUpon>InputCentrifugalForm.xaml</DependentUpon>
