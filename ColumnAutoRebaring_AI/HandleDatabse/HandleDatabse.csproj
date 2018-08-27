@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{BBE3F5DF-CC19-4004-8A2D-E05309CAFE63}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>HandleDatabse</RootNamespace>
+    <AssemblyName>HandleDatabse</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Constant\ConstantValue.cs" />
+    <Compile Include="Database\Dao\DataLearningDao.cs" />
+    <Compile Include="Database\Dao\DevelopmentLengthDao.cs" />
+    <Compile Include="Database\Dao\DataCombineDao.cs" />
+    <Compile Include="Database\Dao\BeamElevationDao.cs" />
+    <Compile Include="Database\Dao\BeamElevationDesignDao.cs" />
+    <Compile Include="Database\Dao\ElevationOffsetDao.cs" />
+    <Compile Include="Database\Dao\OffsetDao.cs" />
+    <Compile Include="Database\Dao\FullStandardLengthOrderDao.cs" />
+    <Compile Include="Database\Dao\StandardLengthOrderDao.cs" />
+    <Compile Include="Database\Dao\StandardLengthTypeDao.cs" />
+    <Compile Include="Database\Dao\LengthInformationDao.cs" />
+    <Compile Include="Database\Dao\StartOffsetDao.cs" />
+    <Compile Include="Database\Dao\ElevationDesignDao.cs" />
+    <Compile Include="Database\Dao\ElevationDao.cs" />
+    <Compile Include="Database\Dao\RebarDiameterDao.cs" />
+    <Compile Include="Database\Dao\RebarDesignDao.cs" />
+    <Compile Include="Database\Dao\LengthDao.cs" />
+    <Compile Include="Database\Dao\StandardLengthDao.cs" />
+    <Compile Include="Database\EF\BeamElevation.cs" />
+    <Compile Include="Database\EF\BeamElevationDesign.cs" />
+    <Compile Include="Database\EF\ColumnStandardRebar_AI_DbContext.cs" />
+    <Compile Include="Database\EF\DataCombine.cs" />
+    <Compile Include="Database\EF\DataLearning.cs" />
+    <Compile Include="Database\EF\DevelopmentLength.cs" />
+    <Compile Include="Database\EF\Elevation.cs" />
+    <Compile Include="Database\EF\ElevationDesign.cs" />
+    <Compile Include="Database\EF\ElevationOffset.cs" />
+    <Compile Include="Database\EF\FullStandardLengthOrder.cs" />
+    <Compile Include="Database\EF\Length.cs" />
+    <Compile Include="Database\EF\LengthInformation.cs" />
+    <Compile Include="Database\EF\Offset.cs" />
+    <Compile Include="Database\EF\RebarDesign.cs" />
+    <Compile Include="Database\EF\RebarDiameter.cs" />
+    <Compile Include="Database\EF\StandardLength.cs" />
+    <Compile Include="Database\EF\StandardLengthOrder.cs" />
+    <Compile Include="Database\EF\StandardLengthType.cs" />
+    <Compile Include="Database\EF\StartOffset.cs" />
+    <Compile Include="Database\EF\sysdiagram.cs" />
+    <Compile Include="Database\Others\StandardLengthEnum.cs" />
+    <Compile Include="ExceptionCreation\InvalidInputException.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="ProjectData\Dao\LengthChosenDao.cs" />
+    <Compile Include="ProjectData\Dao\DesignInformationDao.cs" />
+    <Compile Include="ProjectData\Dao\LengthInfoCollectionDao.cs" />
+    <Compile Include="ProjectData\Dao\ShortenOrderDao.cs" />
+    <Compile Include="ProjectData\EF\DesignInformation.cs" />
+    <Compile Include="ProjectData\EF\FitChosenInformation.cs" />
+    <Compile Include="ProjectData\EF\GeneralInfomation.cs" />
+    <Compile Include="ProjectData\EF\LengthChosen.cs" />
+    <Compile Include="ProjectData\EF\LengthInfo.cs" />
+    <Compile Include="ProjectData\EF\Singleton.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

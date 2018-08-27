@@ -1,0 +1,27 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="RebarDetailing" GeneratedClassName="Settings1">
+  <Profiles />
+  <Settings>
+    <Setting Name="Offset" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="HaveTag" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="RebarTagSymbol" Type="System.String" Scope="User">
+      <Value Profile="(Default)">""</Value>
+    </Setting>
+    <Setting Name="RebarTagFamily" Type="System.String" Scope="User">
+      <Value Profile="(Default)">""</Value>
+    </Setting>
+    <Setting Name="MultiPick" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="ShowAgain" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="HaveSegment" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

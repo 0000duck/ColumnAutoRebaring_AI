@@ -1,11 +1,11 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
 <RevitAddIns>
-  <AddIn Type="Command">
-    <Name>Revit Addin 1</Name>
-    <Assembly>D:\1. Work\Code Project\1. Revit Addin\RevitAddin1\RevitAddin1\bin\Debug\RevitAddin1.dll</Assembly>
-    <FullClassName>RevitAddin1.Class1</FullClassName>
-    <ClientId>3c82da65-4ff3-493e-8683-8b96bb4d321b</ClientId>
-    <VendorId>http://vietbimcoder.com</VendorId>
-    <VendorDescription>Huỳnh Thiện Tài, http://vietbimcoder.com</VendorDescription>
-  </AddIn>
+   <AddIn Type="Application">
+      <Assembly>RevitAddin1\RevitAddin1.dll</Assembly>
+      <ClientId>ddbf336a-29ce-4cd5-88c0-5a1d16bbd5cb</ClientId>
+      <FullClassName>RevitAddin1.App</FullClassName>
+      <Name>Auto Viewer</Name>
+      <VendorId>Huynh Thien Tai</VendorId>
+      <VendorDescription>Huynh Thien Tai, Hoa Binh Corporation</VendorDescription>	  
+   </AddIn>
 </RevitAddIns>
