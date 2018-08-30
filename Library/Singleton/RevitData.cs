@@ -44,7 +44,7 @@ namespace Single
         {
             get
             {
-                if (document == null) document = uIDocument.Document;
+                if (document == null) document = UIDocument.Document;
                 return document;
             }
         }
